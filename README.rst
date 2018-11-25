@@ -26,12 +26,19 @@ MiniConda
     $ source activate <project_name>
     $ source deactivate
 
+Data Download
+
+::
+
+    $ python scripts/data/mnist.py
+    $ python scripts/data/fashion_mnist.py
+
 ==============================================================================
 Datasets
 ==============================================================================
 
 - `mnist`_:
-- `fashion minst`_
+- `fashion_minst`_:
 
 .. _`mnist`: http://yann.lecun.com/exdb/mnist/
-.. _`fashion mnist`: https://github.com/zalandoresearch/fashion-mnist
+.. _`fashion_mnist`: https://github.com/zalandoresearch/fashion-mnist

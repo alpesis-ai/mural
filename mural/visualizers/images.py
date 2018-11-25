@@ -1,8 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-import settings
-
 
 def image_show(image, ax=None, title=None, normalize=True):
     """
@@ -30,7 +28,7 @@ def image_show(image, ax=None, title=None, normalize=True):
     return ax
 
 
-def image_predict(image, probabilities, version="MNIST"):
+def image_predict(image, probabilities, labels):
     """
     Viewing a predicted image and its predicted classes.
     """
@@ -43,10 +41,7 @@ def image_predict(image, probabilities, version="MNIST"):
     ax2.set_aspect(0.1)
     ax2.set_yticks(np.arange(10))
 
-    if version == "MNIST":
-        ax2.set_yticklabels(np.arange(10))
-    elif version == "Fashion":
-        ax2.set_yticklabels(settings.DATA_FASHION_LABELS, size="small");
+    ax2.set_yticklabels(labels, size="small");
     ax2.set_title("Class Probability")
     ax2.set_xlim(0, 1.1)
     
