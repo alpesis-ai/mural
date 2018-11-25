@@ -31,7 +31,7 @@ Datasets
 ==============================================================================
 
 - `mnist`_:
-- `fashion minst`_
+- `fashion_minst`_
 
 .. _`mnist`: http://yann.lecun.com/exdb/mnist/
-.. _`fashion mnist`: https://github.com/zalandoresearch/fashion-mnist
+.. _`fashion_mnist`: https://github.com/zalandoresearch/fashion-mnist
