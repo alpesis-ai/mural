@@ -1,8 +1,12 @@
 # python
 *.pyc
+__pycache__
 
 # editor
 *.swo
 *.swp
 *.swm
 *.swn
+
+# data
+data/
