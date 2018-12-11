@@ -4,6 +4,7 @@ import settings
 from learning.train import train, train_with_steps
 from learning.test import test_with_steps
 from visualizers.images import image_predict
+from visualizers.eval import loss_plot
 
 
 def validate_single(epochs, train_loader, test_loader, model, criterion, optimizer, dataset):
@@ -36,3 +37,5 @@ def validate_steps(epochs, train_loader, test_loader, model, criterion, optimize
               "Training Loss: {:.3f}..".format(this_train_loss),
               "Test Loss: {:.3f}..".format(this_test_loss),
               "Test Accuracy: {:.3f}".format(accuracy/len(test_loader)))
+    loss_plot(train_losses, "Training Losses")
+    loss_plot(test_losses, "Validation Losses")
