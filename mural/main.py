@@ -7,6 +7,7 @@ from torchvision import datasets, transforms
 import settings
 from train import train
 from models.perceptrons import Perceptron
+from models.optimizers import define_optimizer
 from processors.torchvision_datasets import data_loader
 from visualizers.images import image_show, image_predict
 
@@ -38,14 +39,7 @@ if __name__ == '__main__':
     epochs = 2
     model = Perceptron()
     loss = nn.NLLLoss()
-
-    if (args.optimizer == "ADAM"):
-        optimizer = optim.Adam(model.parameters(), lr=0.003)
-    elif (args.optimizer == "SGD"):
-        optimizer = optim.SGD(model.parameters(), lr=0.003)
-    else:
-        print("Optimizer unknown.")
-        exit(1)
+    optimizer = define_optimizer(args.optimizer, model)
     train(epochs, train_loader, model, loss, optimizer) 
 
     dataiter = iter(test_loader)
