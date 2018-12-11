@@ -9,7 +9,7 @@ from learning.validation import validate_single, validate_steps
 from learning.inference import infer_single, infer_multi
 from learning.optimizers import define_optimizer
 from learning.models import define_model
-from visualizers.images import image_show
+from visualizers.images import image_show_single, image_show_multi
 
 
 def set_params():
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     train_loader, test_loader = define_dataset(args.dataset)
     image, label = next(iter(train_loader))
     print(image.shape, label.shape)
-    image_show(image[0, :]) 
+    image_show_single(image[0, :])
 
     model = define_model(args.model)
     criterion = nn.NLLLoss()

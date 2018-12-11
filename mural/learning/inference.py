@@ -2,7 +2,7 @@ import torch
 
 import settings
 from learning.test import test
-from visualizers.images import image_show, image_predict
+from visualizers.images import image_predict
 
 
 def infer_single(test_loader, model_cls, dataset):

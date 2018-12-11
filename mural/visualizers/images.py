@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def image_show(image, ax=None, title=None, normalize=True):
+def image_show_single(image, ax=None, title=None, normalize=True):
     """
     Showing image with tensor format.
     """
@@ -26,6 +26,13 @@ def image_show(image, ax=None, title=None, normalize=True):
     ax.set_yticklabels('')
     plt.show(ax)
     return ax
+
+
+def image_show_multi(images):
+    figure, axes = plt.subplots(figsize=(10, 4), ncols=4)
+    for i in range(4):
+        ax = axes[i]
+        image_show_single(images[i], ax=ax, normalize=False)
 
 
 def image_predict(image, probabilities, labels):
