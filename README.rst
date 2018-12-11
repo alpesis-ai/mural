@@ -33,6 +33,14 @@ Data Download
     $ python scripts/data/mnist.py
     $ python scripts/data/fashion_mnist.py
 
+Model Running
+
+::
+
+    # datasets: MNIST: FASHIONMNIST
+    # optimizer: ADAM, SGD
+    $ python mural/main.py --dataset MNIST --optimizer ADAM
+
 ==============================================================================
 Datasets
 ==============================================================================
