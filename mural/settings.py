@@ -13,6 +13,7 @@ DATA_DIR = PROJECT_ROOT + "/data"
 
 DATA_MNIST_DIR = DATA_DIR + "/mnist/"
 DATA_FASHIONMNIST_DIR = DATA_DIR + "/fashion_mnist/"
+DATA_CATSDOGS_DIR = DATA_DIR + "/cats_dogs/"
 
 DATA_MNIST_LABELS = [
 '0',

@@ -37,7 +37,7 @@ Model Running
 
 ::
 
-    # datasets: MNIST: FASHIONMNIST
+    # datasets: MNIST, FASHIONMNIST
     # model: CLASSIFIER, CLASSIFIER_DROPOUT
     # optimizer: ADAM, SGD
     # learning: VALID_SINGLE, VALID_STEPS, INFER_SINGLE, INFER_MULTI
@@ -47,8 +47,15 @@ Model Running
 Datasets
 ==============================================================================
 
-- `mnist`_:
-- `fashion_minst`_:
+- `mnist`_
+- `fashion_minst`_
+- `cats_and_dogs`_
 
 .. _`mnist`: http://yann.lecun.com/exdb/mnist/
 .. _`fashion_mnist`: https://github.com/zalandoresearch/fashion-mnist
+.. _`cats_and_dogs`: https://www.kaggle.com/c/dogs-vs-cats
+
+
+Cats & Dogs:
+
+- download data to ``data/cats_dogs``, unzip train.zip to ``data/cats_dogs/train/1``, unzip test1.zip to ``data/cats_dogs/test/1``, to create a new folder inside train and test for adapting to ``torchvision.datasets.ImageFolder()``, otherwise, it could not be loaded.

@@ -4,11 +4,11 @@ import torch
 from torch import nn
 from torchvision import datasets, transforms
 
+from processors.datasets import define_dataset
 from learning.validation import validate_single, validate_steps
 from learning.inference import infer_single, infer_multi
 from learning.optimizers import define_optimizer
 from learning.models import define_model
-from processors.torchvision_datasets import data_loader
 from visualizers.images import image_show
 
 
@@ -17,7 +17,7 @@ def set_params():
 
     parser.add_argument('--dataset',
                         type=str,
-                        help="""Datasets: [MNIST, FASHIONMNIST]
+                        help="""Dataset: [MNIST, FASHIONMNISTi, CATSDOGS]
                              """)
 
     parser.add_argument('--model',
@@ -43,7 +43,7 @@ if __name__ == '__main__':
 
     args = set_params()
 
-    train_loader, test_loader = data_loader(args.dataset)
+    train_loader, test_loader = define_dataset(args.dataset)
     image, label = next(iter(train_loader))
     print(image.shape, label.shape)
     image_show(image[0, :]) 
