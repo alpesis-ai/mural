@@ -40,3 +40,7 @@ DATA_FASHION_LABELS = [
 'Ankle Boot'
 ]
 
+#-------------------------------------------------------------------#
+# WEIGHTS PATHS
+
+WEIGHT_PATH = PROJECT_ROOT + "/_weights/"

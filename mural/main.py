@@ -5,8 +5,9 @@ from torch import nn
 from torchvision import datasets, transforms
 
 from learning.validation import validate_single, validate_steps
-from models.perceptrons import Perceptron
-from models.optimizers import define_optimizer
+from learning.inference import infer_single, infer_multi
+from learning.optimizers import define_optimizer
+from learning.models import define_model
 from processors.torchvision_datasets import data_loader
 from visualizers.images import image_show
 
@@ -19,6 +20,10 @@ def set_params():
                         help="""Datasets: [MNIST, FASHIONMNIST]
                              """)
 
+    parser.add_argument('--model',
+                        type=str,
+                        help="Model: [CLASSIFIER, CLASSIFIER_DROPOUT]")
+
     parser.add_argument('--optimizer',
                         type=str,
                         help="""Optimizer: [ADAM, SGD]""")
@@ -27,9 +32,9 @@ def set_params():
                         type=int,
                         help="epochs")
 
-    parser.add_argument('--validation',
+    parser.add_argument('--learning',
                         type=str,
-                        help="validation: [SINGLE, STEPS]")
+                        help="learning: [VALID_SINGLE, VALID_STEPS, INFER_SINGLE, INFER_MULTI]")
 
     return parser.parse_args()
 
@@ -43,14 +48,18 @@ if __name__ == '__main__':
     print(image.shape, label.shape)
     image_show(image[0, :]) 
 
-    model = Perceptron()
+    model = define_model(args.model)
     criterion = nn.NLLLoss()
     optimizer = define_optimizer(args.optimizer, model)
 
-    if (args.validation == "SINGLE"):
+    if (args.learning == "VALID_SINGLE"):
         validate_single(args.epochs, train_loader, test_loader, model, criterion, optimizer, args.dataset)
-    elif (args.validation == "STEPS"):
+    elif (args.learning == "VALID_STEPS"):
         validate_steps(args.epochs, train_loader, test_loader, model, criterion, optimizer)
+    elif (args.learning == "INFER_SINGLE"):
+        infer_single(test_loader, model, args.dataset)
+    elif (args.learning == "INFER_MULTI"):
+        infer_multi()
     else:
         print("validation error")
         exit(1)

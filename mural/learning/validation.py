@@ -2,18 +2,20 @@ import torch
 
 import settings
 from learning.train import train, train_with_steps
-from learning.test import test_with_steps
+from learning.test import test, test_with_steps
 from visualizers.images import image_predict
-from visualizers.eval import loss_plot
+from visualizers.eval import loss_compare
 
 
 def validate_single(epochs, train_loader, test_loader, model, criterion, optimizer, dataset):
     train(epochs, train_loader, model, criterion, optimizer)
+    torch.save(model.state_dict(), settings.WEIGHT_PATH + 'checkpoint.pth')
 
     dataiter = iter(test_loader)
     images, labels = dataiter.next()
     # calculate the class probabilities (softmax) for img
-    probabilities = torch.exp(model(images[1]))
+    # probabilities = torch.exp(model(images[1]))
+    probabilities = test(images[1], model)
 
     if dataset == "MNIST":
         labels = settings.DATA_MNIST_LABELS
@@ -37,5 +39,6 @@ def validate_steps(epochs, train_loader, test_loader, model, criterion, optimize
               "Training Loss: {:.3f}..".format(this_train_loss),
               "Test Loss: {:.3f}..".format(this_test_loss),
               "Test Accuracy: {:.3f}".format(accuracy/len(test_loader)))
-    loss_plot(train_losses, "Training Losses")
-    loss_plot(test_losses, "Validation Losses")
+
+    torch.save(model.state_dict(), settings.WEIGHT_PATH + 'checkpoint.pth')
+    loss_compare(train_losses, test_losses, "Training Losses", "Validation Losses")

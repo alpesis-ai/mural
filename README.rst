@@ -38,9 +38,10 @@ Model Running
 ::
 
     # datasets: MNIST: FASHIONMNIST
+    # model: CLASSIFIER, CLASSIFIER_DROPOUT
     # optimizer: ADAM, SGD
-    # validation: SINGLE, STEPS
-    $ python mural/main.py --dataset MNIST --optimizer ADAM --epochs 50 --validation STEPS
+    # learning: VALID_SINGLE, VALID_STEPS, INFER_SINGLE, INFER_MULTI
+    $ python mural/main.py --dataset MNIST --model CLASSIFIER --optimizer ADAM --epochs 50 --learning VALID_STEPS
 
 ==============================================================================
 Datasets
