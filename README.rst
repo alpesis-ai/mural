@@ -48,7 +48,7 @@ Datasets
 ==============================================================================
 
 - `mnist`_
-- `fashion_minst`_
+- `fashion_mnist`_
 - `cats_and_dogs`_
 
 .. _`mnist`: http://yann.lecun.com/exdb/mnist/
