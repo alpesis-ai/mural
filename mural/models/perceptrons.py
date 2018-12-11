@@ -13,6 +13,7 @@ class Perceptron(nn.Module):
 
 
     def forward(self, x):
+        # make sure input tensor is flattened
         x = x.view(x.shape[0], -1)
         
         x = F.relu(self.fc1(x))

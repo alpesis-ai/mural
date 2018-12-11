@@ -39,7 +39,8 @@ Model Running
 
     # datasets: MNIST: FASHIONMNIST
     # optimizer: ADAM, SGD
-    $ python mural/main.py --dataset MNIST --optimizer ADAM
+    # validation: SINGLE, STEPS
+    $ python mural/main.py --dataset MNIST --optimizer ADAM --epochs 50 --validation STEPS
 
 ==============================================================================
 Datasets
