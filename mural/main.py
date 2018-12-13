@@ -10,7 +10,7 @@ from learning.validation import validate_single, validate_steps
 from learning.inference import infer_single, infer_multi
 from learning.optimizers import define_optimizer
 from learning.models import define_model
-from visualizers.images import image_show_single, image_show_multi
+from visualizers.images import image_show_single, image_show_multi, image_show_detail
 
 
 def set_params():
@@ -45,9 +45,19 @@ if __name__ == '__main__':
     args = set_params()
 
     train_loader, test_loader = define_dataset(args.dataset)
-    image, label = next(iter(train_loader))
-    print(image.shape, label.shape)
-    image_show_single(image[0, :])
+
+    if (settings.IMAGE_EXPLORE == 1):
+        image, label = next(iter(train_loader))
+        print(image.shape, label.shape)
+        image_show_single(image[0, :])
+    elif (settings.IMAGE_EXPLORE == 2):
+        dataiter = iter(train_loader)
+        images, labels = dataiter.next()
+        image_show_multi(images, labels)
+    elif (settings.IMAGE_EXPLORE == 3):
+        dataiter = iter(train_loader)
+        images, labels = dataiter.next()
+        image_show_detail(images)
 
     model = define_model(args.model)
     model.to(settings.DEVICE)

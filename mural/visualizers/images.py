@@ -28,11 +28,33 @@ def image_show_single(image, ax=None, title=None, normalize=True):
     return ax
 
 
-def image_show_multi(images):
-    figure, axes = plt.subplots(figsize=(10, 4), ncols=4)
-    for i in range(4):
-        ax = axes[i]
-        image_show_single(images[i], ax=ax, normalize=False)
+def image_show_multi(images, labels):
+    images = images.numpy()
+    figure = plt.figure(figsize=(25, 4))
+    for idx in np.arange(20):
+        ax = figure.add_subplot(2, 20/2, idx+1, xticks=[], yticks=[])
+        ax.imshow(np.squeeze(images[idx]), cmap='gray')
+        ax.set_title(str(labels[idx].item()))
+    plt.show()
+
+
+def image_show_detail(images):
+    images = images.numpy()
+    image = np.squeeze(images[1])
+
+    figure = plt.figure(figsize = (12,12)) 
+    ax = figure.add_subplot(111)
+    ax.imshow(image, cmap='gray')
+    width, height = image.shape
+    thresh = image.max()/2.5
+    for x in range(width):
+        for y in range(height):
+            val = round(image[x][y],2) if image[x][y] !=0 else 0
+            ax.annotate(str(val), xy=(y,x),
+                        horizontalalignment='center',
+                        verticalalignment='center',
+                        color='white' if image[x][y] < thresh else 'black')
+    plt.show()
 
 
 def image_predict(image, probabilities, labels):
