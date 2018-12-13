@@ -4,6 +4,7 @@ import torch
 from torch import nn
 from torchvision import datasets, transforms
 
+import settings
 from processors.datasets import define_dataset
 from learning.validation import validate_single, validate_steps
 from learning.inference import infer_single, infer_multi
@@ -48,9 +49,8 @@ if __name__ == '__main__':
     print(image.shape, label.shape)
     image_show_single(image[0, :])
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = define_model(args.model)
-    model.to(device)
+    model.to(settings.DEVICE)
 
     criterion = nn.NLLLoss()
     optimizer = define_optimizer(args.optimizer, model)
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     if (args.learning == "VALID_SINGLE"):
         validate_single(args.epochs, train_loader, test_loader, model, criterion, optimizer, args.dataset)
     elif (args.learning == "VALID_STEPS"):
-        validate_steps(device, args.epochs, train_loader, test_loader, model, criterion, optimizer)
+        validate_steps(args.epochs, train_loader, test_loader, model, criterion, optimizer)
     elif (args.learning == "INFER_SINGLE"):
         infer_single(test_loader, model, args.dataset)
     elif (args.learning == "INFER_MULTI"):

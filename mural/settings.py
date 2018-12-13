@@ -1,5 +1,12 @@
 import os.path
 
+import torch
+
+#-------------------------------------------------------------------#
+# PERFORMANCES
+
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 #-------------------------------------------------------------------#
 # ROOT SETTINGS
 

@@ -24,12 +24,12 @@ def validate_single(epochs, train_loader, test_loader, model, criterion, optimiz
     image_predict(images[1], probabilities, labels)
 
 
-def validate_steps(device, epochs, train_loader, test_loader, model, criterion, optimizer):
+def validate_steps(epochs, train_loader, test_loader, model, criterion, optimizer):
     train_losses = []
     test_losses = []
     for e in range(epochs):
-        running_loss = train_with_steps(device, train_loader, model, criterion, optimizer)
-        test_loss, accuracy = test_with_steps(device, test_loader, model, criterion)
+        running_loss = train_with_steps(train_loader, model, criterion, optimizer)
+        test_loss, accuracy = test_with_steps(test_loader, model, criterion)
 
         this_train_loss = running_loss / len(train_loader)
         this_test_loss = test_loss / len(test_loader)
