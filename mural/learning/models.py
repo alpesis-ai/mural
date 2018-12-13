@@ -1,5 +1,5 @@
-from torchvision import models
 from models.classifiers import Classifier, ClassifierWithDropout
+from models.densenet import densenet121_trans
 
 
 def define_model(name):
@@ -11,8 +11,8 @@ def define_model(name):
         model = ClassifierWithDropout()
         return model
 
-    elif (name == "DENSENET121"):
-        model = models.densenet121(pretrained=True)
+    elif (name == "DENSENET121_TRANS"):
+        model = densenet121_trans()
         return model
 
     else:

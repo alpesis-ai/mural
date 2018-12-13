@@ -10,7 +10,7 @@ def test(image, model_cls):
     return probabilities
 
 
-def test_with_steps(test_loader, model_cls, loss_fn):
+def test_with_steps(device, test_loader, model_cls, loss_fn):
     test_loss = 0
     accuracy = 0
     
@@ -18,7 +18,8 @@ def test_with_steps(test_loader, model_cls, loss_fn):
     with torch.no_grad():
         model_cls.eval()
         for images, labels in test_loader:
-            log_probabilities = model_cls(images)
+            images, labels = images.to(device), labels.to(device)
+            log_probabilities = model_cls.forward(images)
             test_loss += loss_fn(log_probabilities, labels)
             probabilities = torch.exp(log_probabilities)
             top_probability, top_class = probabilities.topk(1, dim=1)
