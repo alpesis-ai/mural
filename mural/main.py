@@ -1,13 +1,13 @@
 import argparse
 
 import torch
-from torch import nn
 from torchvision import datasets, transforms
 
 import settings
 from processors.datasets import define_dataset
 from learning.validation import validate_single, validate_steps
 from learning.inference import infer_single, infer_multi
+from learning.losses import define_loss
 from learning.optimizers import define_optimizer
 from learning.models import define_model
 from visualizers.images import image_show_single, image_show_multi, image_show_detail
@@ -24,6 +24,10 @@ def set_params():
     parser.add_argument('--model',
                         type=str,
                         help="Model: [CLASSIFIER, CLASSIFIER_DROPOUT, DENSENET_TRANS]")
+
+    parser.add_argument('--loss',
+                        type=str,
+                        help="Loss: [NLL, CROSSENTROPY]")
 
     parser.add_argument('--optimizer',
                         type=str,
@@ -62,7 +66,7 @@ if __name__ == '__main__':
     model = define_model(args.model)
     model.to(settings.DEVICE)
 
-    criterion = nn.NLLLoss()
+    criterion = define_loss(args.loss)
     optimizer = define_optimizer(args.optimizer, model)
 
     if (args.learning == "VALID_SINGLE"):

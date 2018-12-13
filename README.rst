@@ -39,9 +39,10 @@ Model Running
 
     # datasets: MNIST, FASHIONMNIST
     # model: CLASSIFIER, CLASSIFIER_DROPOUT, DENSENET_TRANS
+    # loss: NLL, CROSSENTROPY
     # optimizer: ADAM, SGD
     # learning: VALID_SINGLE, VALID_STEPS, INFER_SINGLE, INFER_MULTI
-    $ python mural/main.py --dataset MNIST --model CLASSIFIER --optimizer ADAM --epochs 50 --learning VALID_STEPS
+    $ python mural/main.py --dataset MNIST --model CLASSIFIER --loss NLL --optimizer ADAM --epochs 50 --learning VALID_STEPS
 
 ==============================================================================
 Datasets

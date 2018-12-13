@@ -1,4 +1,5 @@
 from models.classifiers import Classifier, ClassifierWithDropout
+from models.mlp import MLP
 from models.densenet import densenet121_trans
 
 
@@ -9,6 +10,10 @@ def define_model(name):
 
     elif (name == "CLASSIFIER_DROPOUT"):
         model = ClassifierWithDropout()
+        return model
+
+    elif (name == "MLP"):
+        model = MLP()
         return model
 
     elif (name == "DENSENET121_TRANS"):

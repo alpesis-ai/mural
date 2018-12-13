@@ -19,7 +19,7 @@ DATA_BATCH_SIZE = 20
 # - 1: show a single image
 # - 2: show multi images
 # - 3: show image detail
-IMAGE_EXPLORE = 3
+IMAGE_EXPLORE = 2
 
 #-------------------------------------------------------------------#
 # ROOT SETTINGS
