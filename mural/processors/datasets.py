@@ -9,8 +9,12 @@ def load_mnist():
                                     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
     train_data = datasets.FashionMNIST(settings.DATA_MNIST_DIR, download=False, train=True, transform=transform)
     test_data = datasets.FashionMNIST(settings.DATA_MNIST_DIR, download=False, train=False, transform=transform)
-    train_loader = torch.utils.data.DataLoader(train_data, batch_size=64, shuffle=True)
-    test_loader = torch.utils.data.DataLoader(test_data, batch_size=64, shuffle=True)
+    train_loader = torch.utils.data.DataLoader(train_data,
+                                               batch_size=settings.DATA_BATCH_SIZE,
+                                               num_workers=settings.DATA_NUM_WORKERS)
+    test_loader = torch.utils.data.DataLoader(test_data,
+                                              batch_size=settings.DATA_BATCH_SIZE,
+                                              num_workers=settings.DATA_NUM_WORKERS)
     return train_loader, test_loader
 
 
@@ -19,8 +23,12 @@ def load_fashionmnist():
                                     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
     train_data = datasets.FashionMNIST(settings.DATA_FASHIONMNIST_DIR, download=False, train=True, transform=transform)
     test_data = datasets.FashionMNIST(settings.DATA_FASHIONMNIST_DIR, download=False, train=False, transform=transform)
-    train_loader = torch.utils.data.DataLoader(train_data, batch_size=64, shuffle=True)
-    test_loader = torch.utils.data.DataLoader(test_data, batch_size=64, shuffle=True)
+    train_loader = torch.utils.data.DataLoader(train_data,
+                                               batch_size=settings.DATA_BATCH_SIZE,
+                                               num_workers=settings.DATA_NUM_WORKERS)
+    test_loader = torch.utils.data.DataLoader(test_data,
+                                              batch_size=settings.DATA_BATCH_SIZE,
+                                              num_workers=settings.DATA_NUM_WORKERS)
     return train_loader, test_loader
    
 
@@ -36,8 +44,12 @@ def load_catsdogs():
     train_data = datasets.ImageFolder(settings.DATA_CATSDOGS_DIR + '/train', transform=train_transform)
     test_data = datasets.ImageFolder(settings.DATA_CATSDOGS_DIR + '/test', transform=test_transform)
 
-    train_loader = torch.utils.data.DataLoader(train_data, batch_size=32)
-    test_loader = torch.utils.data.DataLoader(test_data, batch_size=32)
+    train_loader = torch.utils.data.DataLoader(train_data,
+                                               batch_size=settings.DATA_BATCH_SIZE,
+                                               num_workers=settings.DATA_NUM_WORKERS)
+    test_loader = torch.utils.data.DataLoader(test_data,
+                                              batch_size=settings.DATA_BATCH_SIZE,
+                                              num_workers=settings.DATA_NUM_WORKERS)
     return train_loader, test_loader
 
 

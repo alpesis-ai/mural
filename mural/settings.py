@@ -7,6 +7,10 @@ import torch
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+# for data processor
+DATA_NUM_WORKERS = 0
+DATA_BATCH_SIZE = 20
+
 #-------------------------------------------------------------------#
 # ROOT SETTINGS
 
