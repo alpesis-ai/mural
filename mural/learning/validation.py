@@ -39,7 +39,7 @@ def validate_steps(epochs, train_loader, valid_loader, model, criterion, optimiz
         valid_losses.append(this_valid_loss)
         print("Epoch: {}/{}..".format(e+1, epochs),
               "Training Loss: {:.6f}".format(this_train_loss),
-              "Validation Loss: {:.6f}".format(this_test_loss),
+              "Validation Loss: {:.6f}".format(this_valid_loss),
               "Test Accuracy: {:.6f}".format(accuracy/len(valid_loader.dataset)))
 
         # save model if validation loss has decreased
