@@ -1,17 +1,18 @@
 import torch
+import numpy as np
 
 import settings
 from learning.train import train, train_with_steps
-from learning.test import test, test_with_steps
+from learning.test import test, valid_with_steps
 from visualizers.images import image_predict_single
 from visualizers.eval import loss_compare
 
 
-def validate_single(epochs, train_loader, test_loader, model, criterion, optimizer, dataset):
+def validate_single(epochs, train_loader, valid_loader, model, criterion, optimizer, dataset):
     train(epochs, train_loader, model, criterion, optimizer)
     torch.save(model.state_dict(), settings.WEIGHT_PATH + 'checkpoint.pth')
 
-    dataiter = iter(test_loader)
+    dataiter = iter(valid_loader)
     images, labels = dataiter.next()
     # calculate the class probabilities (softmax) for img
     # probabilities = torch.exp(model(images[1]))
@@ -24,21 +25,28 @@ def validate_single(epochs, train_loader, test_loader, model, criterion, optimiz
     image_predict_single(images[1], probabilities, labels)
 
 
-def validate_steps(epochs, train_loader, test_loader, model, criterion, optimizer):
+def validate_steps(epochs, train_loader, valid_loader, model, criterion, optimizer):
     train_losses = []
-    test_losses = []
+    valid_losses = []
+    valid_loss_min = np.Inf
     for e in range(epochs):
         running_loss = train_with_steps(train_loader, model, criterion, optimizer)
-        test_loss, accuracy = test_with_steps(test_loader, model, criterion)
+        valid_loss, accuracy = valid_with_steps(valid_loader, model, criterion)
 
-        this_train_loss = running_loss / len(train_loader)
-        this_test_loss = test_loss / len(test_loader)
+        this_train_loss = running_loss / len(train_loader.dataset)
+        this_valid_loss = valid_loss / len(valid_loader.dataset)
         train_losses.append(this_train_loss)
-        test_losses.append(this_test_loss)
+        valid_losses.append(this_valid_loss)
         print("Epoch: {}/{}..".format(e+1, epochs),
-              "Training Loss: {:.3f}..".format(this_train_loss),
-              "Test Loss: {:.3f}..".format(this_test_loss),
-              "Test Accuracy: {:.3f}".format(accuracy/len(test_loader)))
+              "Training Loss: {:.6f}".format(this_train_loss),
+              "Validation Loss: {:.6f}".format(this_test_loss),
+              "Test Accuracy: {:.6f}".format(accuracy/len(valid_loader.dataset)))
 
-    torch.save(model.state_dict(), settings.WEIGHT_PATH + 'checkpoint.pth')
-    loss_compare(train_losses, test_losses, "Training Losses", "Validation Losses")
+        # save model if validation loss has decreased
+        if (this_valid_loss <= valid_loss_min):
+            print("----> Validation loss decreased ({:.6f} -> {:.6f}), saving model...".format(
+                   valid_loss_min, this_valid_loss))
+            torch.save(model.state_dict(), settings.WEIGHT_PATH + 'checkpoint.pth')
+            valid_loss_min = this_valid_loss
+
+    loss_compare(train_losses, valid_losses, "Training Losses", "Validation Losses")

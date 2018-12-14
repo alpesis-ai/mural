@@ -62,9 +62,9 @@ if __name__ == '__main__':
     optimizer = define_optimizer(args.optimizer, model)
 
     if (args.learning == "VALID_SINGLE"):
-        validate_single(args.epochs, train_loader, test_loader, model, criterion, optimizer, args.dataset)
+        validate_single(args.epochs, train_loader, valid_loader, model, criterion, optimizer, args.dataset)
     elif (args.learning == "VALID_STEPS"):
-        validate_steps(args.epochs, train_loader, test_loader, model, criterion, optimizer)
+        validate_steps(args.epochs, train_loader, valid_loader, model, criterion, optimizer)
     elif (args.learning == "INFER_SINGLE"):
         infer_single(test_loader, model, args.dataset)
     elif (args.learning == "INFER_MULTI"):

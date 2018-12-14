@@ -27,5 +27,6 @@ def train_with_steps(train_loader, model_cls, loss_fn, optimizer_fn):
         loss = loss_fn(output, labels)
         loss.backward()
         optimizer_fn.step()
-        running_loss += loss.item()
+        # running_loss += loss.item()
+        running_loss += loss.item() * images.size(0)
     return running_loss

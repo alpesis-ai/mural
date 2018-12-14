@@ -13,21 +13,23 @@ def test(image, model_cls):
     return probabilities
 
 
-def test_with_steps(test_loader, model_cls, loss_fn):
-    test_loss = 0.0
+def valid_with_steps(test_loader, model_cls, loss_fn):
+    valid_loss = 0.0
     accuracy = 0.0   
  
     model_cls.eval()
     for images, labels in test_loader:
         images, labels = images.to(settings.DEVICE), labels.to(settings.DEVICE)
         log_probabilities = model_cls.forward(images)
-        test_loss += loss_fn(log_probabilities, labels)
+        # valid_loss += loss_fn(log_probabilities, labels)
+        loss = loss_fn(log_probabilities, labels)
+        valid_loss += loss.item() * images.size(0)
         probabilities = torch.exp(log_probabilities)
         top_probability, top_class = probabilities.topk(1, dim=1)
         equals = top_class == labels.view(*top_class.shape)
         accuracy += torch.mean(equals.type(torch.FloatTensor))
 
-    return test_loss, accuracy
+    return valid_loss, accuracy
 
 
 def test_multi(test_loader, model_cls, loss_fn, dataset):
