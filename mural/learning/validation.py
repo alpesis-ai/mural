@@ -3,7 +3,7 @@ import torch
 import settings
 from learning.train import train, train_with_steps
 from learning.test import test, test_with_steps
-from visualizers.images import image_predict
+from visualizers.images import image_predict_single
 from visualizers.eval import loss_compare
 
 
@@ -21,7 +21,7 @@ def validate_single(epochs, train_loader, test_loader, model, criterion, optimiz
         labels = settings.DATA_MNIST_LABELS
     elif dataset == "FASHIONMNIST":
         labels = settings.DATA_FASHION_LABELS
-    image_predict(images[1], probabilities, labels)
+    image_predict_single(images[1], probabilities, labels)
 
 
 def validate_steps(epochs, train_loader, test_loader, model, criterion, optimizer):

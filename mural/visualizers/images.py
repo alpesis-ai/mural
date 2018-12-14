@@ -57,7 +57,7 @@ def image_show_detail(images):
     plt.show()
 
 
-def image_predict(image, probabilities, labels):
+def image_predict_single(image, probabilities, labels):
     """
     Viewing a predicted image and its predicted classes.
     """
@@ -77,3 +77,17 @@ def image_predict(image, probabilities, labels):
     plt.tight_layout()
 
     plt.show((ax1, ax2))
+
+
+def image_predict_multi(images, predicted_labels, labels):
+    images = images.numpy()
+
+    figure = plt.figure(figsize=(25, 4))
+    for idx in np.arange(20):
+        ax = figure.add_subplot(2, 20/2, idx+1, xticks=[], yticks=[])
+        ax.imshow(np.squeeze(images[idx]), cmap="gray")
+        ax.set_title("{} ({})".format(
+                          str(predicted_labels[idx].item()),
+                          str(labels[idx].item())),
+                      color=("green" if predicted_labels[idx] == labels[idx] else "red"))
+    plt.show() 
