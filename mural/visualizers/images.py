@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+import settings
+from processors.data_selection import select_data_single, select_data_multi
+
 
 def image_show_single(image, ax=None, title=None, normalize=True):
     """
@@ -90,4 +93,17 @@ def image_predict_multi(images, predicted_labels, labels):
                           str(predicted_labels[idx].item()),
                           str(labels[idx].item())),
                       color=("green" if predicted_labels[idx] == labels[idx] else "red"))
-    plt.show() 
+    plt.show()
+
+
+def preshow_images(data_loader):
+    if (settings.IMAGE_EXPLORE == 1):
+        image, label = select_data_single(data_loader)
+        print(image.shape, label.shape)
+        image_show_single(image[0, :])
+    elif (settings.IMAGE_EXPLORE == 2):
+        images, labels = select_data_multi(data_loader)
+        image_show_multi(images, labels)
+    elif (settings.IMAGE_EXPLORE == 3):
+        images, labels = select_data_multi(data_loader)
+        image_show_detail(images) 
