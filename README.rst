@@ -32,12 +32,13 @@ Data Download
 
     $ python scripts/data/mnist.py
     $ python scripts/data/fashion_mnist.py
+    $ python scripts/data/cifar10.py
 
 Model Running
 
 ::
 
-    # datasets: MNIST, FASHIONMNIST
+    # datasets: MNIST, FASHIONMNIST, CIFAR10, CATSDOGS
     # model: CLASSIFIER, CLASSIFIER_DROPOUT, DENSENET_TRANS
     # loss: NLL, CROSSENTROPY
     # optimizer: ADAM, SGD
@@ -56,10 +57,12 @@ Datasets
 
 - `mnist`_
 - `fashion_mnist`_
+- `cifar`_
 - `cats_and_dogs`_
 
 .. _`mnist`: http://yann.lecun.com/exdb/mnist/
 .. _`fashion_mnist`: https://github.com/zalandoresearch/fashion-mnist
+.. _`cifar`: https://www.cs.toronto.edu/~kriz/cifar.html
 .. _`cats_and_dogs`: https://www.kaggle.com/c/dogs-vs-cats
 
 

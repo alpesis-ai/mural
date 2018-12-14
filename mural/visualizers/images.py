@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 import settings
 from processors.data_selection import select_data_single, select_data_multi
+from learning.labels import define_labels
 
 
 def image_show_single(image, ax=None, title=None, normalize=True):
@@ -31,13 +32,19 @@ def image_show_single(image, ax=None, title=None, normalize=True):
     return ax
 
 
-def image_show_multi(images, labels):
+def image_show_multi(images, labels, dataset):
+    expected_labels = define_labels(dataset)
+
     images = images.numpy()
     figure = plt.figure(figsize=(25, 4))
     for idx in np.arange(20):
         ax = figure.add_subplot(2, 20/2, idx+1, xticks=[], yticks=[])
-        ax.imshow(np.squeeze(images[idx]), cmap='gray')
-        ax.set_title(str(labels[idx].item()))
+        if images[idx].shape[0] == 1: 
+            ax.imshow(np.squeeze(images[idx]), cmap='gray')
+        elif images[idx].shape[0] == 3:
+            images[idx] = images[idx] / 2 + 0.5
+            plt.imshow(np.transpose(images[idx], (1, 2, 0)))
+        ax.set_title(str(expected_labels[labels[idx].item()]))
     plt.show()
 
 
@@ -60,6 +67,19 @@ def image_show_detail(images):
     plt.show()
 
 
+def preshow_images(data_loader, dataset):
+    if (settings.IMAGE_EXPLORE == 1):
+        image, label = select_data_single(data_loader)
+        print(image.shape, label.shape)
+        image_show_single(image[0, :])
+    elif (settings.IMAGE_EXPLORE == 2):
+        images, labels = select_data_multi(data_loader)
+        image_show_multi(images, labels, dataset)
+    elif (settings.IMAGE_EXPLORE == 3):
+        images, labels = select_data_multi(data_loader)
+        image_show_detail(images)
+
+ 
 def image_predict_single(image, probabilities, labels):
     """
     Viewing a predicted image and its predicted classes.
@@ -82,7 +102,7 @@ def image_predict_single(image, probabilities, labels):
     plt.show((ax1, ax2))
 
 
-def image_predict_multi(images, predicted_labels, labels):
+def image_predict_multi(images, predicted_labels, labels, label_names):
     images = images.numpy()
 
     figure = plt.figure(figsize=(25, 4))
@@ -90,20 +110,7 @@ def image_predict_multi(images, predicted_labels, labels):
         ax = figure.add_subplot(2, 20/2, idx+1, xticks=[], yticks=[])
         ax.imshow(np.squeeze(images[idx]), cmap="gray")
         ax.set_title("{} ({})".format(
-                          str(predicted_labels[idx].item()),
-                          str(labels[idx].item())),
+                          str(label_names[predicted_labels[idx].item()]),
+                          str(label_names[labels[idx].item()])),
                       color=("green" if predicted_labels[idx] == labels[idx] else "red"))
     plt.show()
-
-
-def preshow_images(data_loader):
-    if (settings.IMAGE_EXPLORE == 1):
-        image, label = select_data_single(data_loader)
-        print(image.shape, label.shape)
-        image_show_single(image[0, :])
-    elif (settings.IMAGE_EXPLORE == 2):
-        images, labels = select_data_multi(data_loader)
-        image_show_multi(images, labels)
-    elif (settings.IMAGE_EXPLORE == 3):
-        images, labels = select_data_multi(data_loader)
-        image_show_detail(images) 

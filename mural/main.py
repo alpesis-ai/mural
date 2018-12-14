@@ -18,7 +18,7 @@ def set_params():
 
     parser.add_argument('--dataset',
                         type=str,
-                        help="""Dataset: [MNIST, FASHIONMNIST, CATSDOGS]
+                        help="""Dataset: [MNIST, FASHIONMNIST, CIFAR10, CATSDOGS]
                              """)
 
     parser.add_argument('--model',
@@ -48,12 +48,12 @@ if __name__ == '__main__':
 
     args = set_params()
 
-    train_loader, test_loader = define_dataset(args.dataset)
+    train_loader, valid_loader, test_loader = define_dataset(args.dataset)
 
     if "VALID_" in args.learning:
-        preshow_images(train_loader)
+        preshow_images(train_loader, args.dataset)
     elif "INFER_" in args.learning:
-        preshow_images(test_loader)
+        preshow_images(test_loader, args.dataset)
 
     model = define_model(args.model)
     model.to(settings.DEVICE)

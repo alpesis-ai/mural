@@ -3,6 +3,7 @@ import numpy as np
 
 import settings
 from learning.test import test, test_multi
+from learning.labels import define_labels
 from visualizers.images import image_predict_single, image_predict_multi
 
 
@@ -18,25 +19,18 @@ def infer_single(test_loader, model_cls, dataset):
 
     probabilities = test(image, model_cls)
 
-    if dataset == "MNIST":
-        labels = settings.DATA_MNIST_LABELS
-    elif dataset == "FASHIONMNIST":
-        labels = settings.DATA_FASHION_LABELS
+    labels = define_labels(dataset)
     image_predict_single(image, probabilities, labels)
 
 
 def infer_multi(test_loader, model_cls, loss_fn, dataset):
     predicted_probabilities, predicted_labels, test_loss, class_correct, class_total = test_multi(test_loader, model_cls, loss_fn, dataset)
 
-    if dataset == "MNIST":
-        labels = settings.DATA_MNIST_LABELS
-    elif dataset == "FASHIONMNIST":
-        labels = settings.DATA_FASHION_LABELS
-
-    for i in range(len(labels)):
+    label_names = define_labels(dataset)
+    for i in range(len(label_names)):
         if class_total[i] > 0:
             print("Test Accuracy of {:5s}: {:2f}% ({:2d}/{:2d})".format(
-                   labels[i],
+                   label_names[i],
                    100 * class_correct[i] / class_total[i],
                    int(np.sum(class_correct[i])), int(np.sum(class_total[i]))))
         else:
@@ -50,4 +44,4 @@ def infer_multi(test_loader, model_cls, loss_fn, dataset):
 
     dataiter = iter(test_loader)
     images, labels = dataiter.next()
-    image_predict_multi(images, predicted_labels, labels)    
+    image_predict_multi(images, predicted_labels, labels, label_names) 
