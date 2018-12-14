@@ -30,6 +30,7 @@ Data Download
 
 ::
 
+    # download data into the folder `_data`
     $ python scripts/data/mnist.py
     $ python scripts/data/fashion_mnist.py
     $ python scripts/data/cifar10.py
