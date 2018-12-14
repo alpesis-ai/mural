@@ -48,22 +48,37 @@ def image_show_multi(images, labels, dataset):
     plt.show()
 
 
-def image_show_detail(images):
-    images = images.numpy()
-    image = np.squeeze(images[1])
-
-    figure = plt.figure(figsize = (12,12)) 
-    ax = figure.add_subplot(111)
-    ax.imshow(image, cmap='gray')
+def image_show_detail_single(ax, image):
     width, height = image.shape
-    thresh = image.max()/2.5
+    thresh = image.max() / 2.5
+    ax.imshow(image, cmap='gray')
     for x in range(width):
         for y in range(height):
-            val = round(image[x][y],2) if image[x][y] !=0 else 0
+            val = round(image[x][y], 2) if image[x][y] !=0 else 0
             ax.annotate(str(val), xy=(y,x),
                         horizontalalignment='center',
                         verticalalignment='center',
+                        size = 8,
                         color='white' if image[x][y] < thresh else 'black')
+
+def image_show_detail(images):
+    images = images.numpy()
+    if images[0].shape[0] == 1:
+        image = np.squeeze(images[1])
+        figure = plt.figure(figsize=(12, 12))
+        ax = figure.add_subplot(111)
+        ax.set_title("gray channel")
+        image_show_detail_single(ax, image)
+
+    elif images[0].shape[0] == 3:
+        image = np.squeeze(images[3])
+        channels = ['red channel', 'green channel', 'blue channel']
+        figure = plt.figure(figsize=(36, 36))
+        for idx in np.arange(image.shape[0]):
+            ax = figure.add_subplot(1, 3, idx+1)
+            ax.set_title(channels[idx])
+            image_idx = image[idx]
+            image_show_detail_single(ax, image_idx)
     plt.show()
 
 
