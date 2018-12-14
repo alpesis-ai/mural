@@ -35,15 +35,22 @@ Data Download
     $ python scripts/data/fashion_mnist.py
     $ python scripts/data/cifar10.py
 
-Model Train
+Model Parameters
 
 ::
 
     # datasets: MNIST, FASHIONMNIST, CIFAR10, CATSDOGS
+    # learning: VALID_SINGLE, VALID_STEPS, INFER_SINGLE, INFER_MULTI
     # model: CLASSIFIER, CLASSIFIER_DROPOUT, DENSENET_TRANS
     # loss: NLL, CROSSENTROPY
     # optimizer: ADAM, SGD
     # learning: VALID_SINGLE, VALID_STEPS, INFER_SINGLE, INFER_MULTI
+
+
+Model Train
+
+::
+
     $ python mural/main.py
       --dataset CIFAR10
       --model CNN
@@ -56,11 +63,6 @@ Model Test
 
 ::
 
-    # datasets: MNIST, FASHIONMNIST, CIFAR10, CATSDOGS
-    # model: CLASSIFIER, CLASSIFIER_DROPOUT, DENSENET_TRANS
-    # loss: NLL, CROSSENTROPY
-    # optimizer: ADAM, SGD
-    # learning: VALID_SINGLE, VALID_STEPS, INFER_SINGLE, INFER_MULTI
     $ python mural/main.py
       --dataset CIFAR10
       --model CNN
