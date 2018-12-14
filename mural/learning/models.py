@@ -21,6 +21,6 @@ def define_model(name):
     elif (name == "DENSENET121_TRANS"):
         model = densenet121_trans()
 
-    print(name)
+    print("{} Model Structure:".format(name))
     print(model)
     return model
