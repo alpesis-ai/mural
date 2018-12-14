@@ -52,7 +52,7 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #-------------------------------------------------------------------#
 # DATA PATHS
 
-DATA_DIR = PROJECT_ROOT + "/data"
+DATA_DIR = PROJECT_ROOT + "/_data"
 
 DATA_MNIST_DIR = DATA_DIR + "/mnist/"
 DATA_FASHIONMNIST_DIR = DATA_DIR + "/fashion_mnist/"
