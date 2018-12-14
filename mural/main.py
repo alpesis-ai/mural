@@ -18,15 +18,18 @@ def set_params():
 
     parser.add_argument('--dataset',
                         type=str,
+                        required=True,
                         help="""Dataset: [MNIST, FASHIONMNIST, CIFAR10, CATSDOGS]
                              """)
 
     parser.add_argument('--model',
                         type=str,
+                        required=True,
                         help="Model: [CLASSIFIER, CLASSIFIER_DROPOUT, DENSENET_TRANS]")
 
     parser.add_argument('--loss',
                         type=str,
+                        required=True,
                         help="Loss: [NLL, CROSSENTROPY]")
 
     parser.add_argument('--optimizer',
@@ -35,10 +38,11 @@ def set_params():
 
     parser.add_argument('--epochs',
                         type=int,
-                        help="epochs")
+                        help="epochs (train only)")
 
     parser.add_argument('--learning',
                         type=str,
+                        required=True,
                         help="learning: [VALID_SINGLE, VALID_STEPS, INFER_SINGLE, INFER_MULTI]")
 
     return parser.parse_args()
@@ -59,7 +63,8 @@ if __name__ == '__main__':
     model.to(settings.DEVICE)
 
     criterion = define_loss(args.loss)
-    optimizer = define_optimizer(args.optimizer, model)
+    if "VALID_" in args.learning:
+        optimizer = define_optimizer(args.optimizer, model)
 
     if (args.learning == "VALID_SINGLE"):
         validate_single(args.epochs, train_loader, valid_loader, model, criterion, optimizer, args.dataset)
