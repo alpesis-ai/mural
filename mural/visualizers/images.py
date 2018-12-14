@@ -123,7 +123,11 @@ def image_predict_multi(images, predicted_labels, labels, label_names):
     figure = plt.figure(figsize=(25, 4))
     for idx in np.arange(20):
         ax = figure.add_subplot(2, 20/2, idx+1, xticks=[], yticks=[])
-        ax.imshow(np.squeeze(images[idx]), cmap="gray")
+        if images[idx].shape[0] == 1:
+            ax.imshow(np.squeeze(images[idx]), cmap="gray")
+        elif images[idx].shape[0] == 3:
+            images[idx] = images[idx] / 2 + 0.5
+            plt.imshow(np.transpose(images[idx], (1, 2, 0))) 
         ax.set_title("{} ({})".format(
                           str(label_names[predicted_labels[idx].item()]),
                           str(label_names[labels[idx].item()])),

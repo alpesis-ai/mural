@@ -2,6 +2,7 @@ import torch
 import numpy as np
 
 import settings
+from learning.labels import define_labels
 
 
 def test(image, model_cls):
@@ -35,12 +36,8 @@ def valid_with_steps(test_loader, model_cls, loss_fn):
 def test_multi(test_loader, model_cls, loss_fn, dataset):
     """For inference"""
 
-    if dataset == "MNIST":
-        labels_expected = settings.DATA_MNIST_LABELS
-    elif dataset == "FASHIONMNIST":
-        labels_expected = settings.DATA_FASHION_LABELS
-
     test_loss = 0.0
+    labels_expected = define_labels(dataset)
     class_correct = list(0. for i in range(len(labels_expected)))
     class_total = list(0. for i in range(len(labels_expected)))
 
