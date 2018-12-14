@@ -1,7 +1,8 @@
 import torch
+import numpy as np
 
 import settings
-from learning.test import test
+from learning.test import test, test_with_steps
 from visualizers.images import image_predict
 
 
@@ -24,5 +25,25 @@ def infer_single(test_loader, model_cls, dataset):
     image_predict(image, probabilities, labels)
 
 
-def infer_multi():
-    pass
+def infer_multi(test_loader, model_cls, loss_fn, dataset):
+    test_losses, class_correct, class_total = test_with_steps(test_loader, model_cls, loss_fn, dataset)
+
+    if dataset == "MNIST":
+        labels = settings.DATA_MNIST_LABELS
+    elif dataset == "FASHIONMNIST":
+        labels = settings.DATA_FASHION_LABELS
+
+    for i in range(len(labels)):
+        if class_total[i] > 0:
+            print("Test Accuracy of {:5s}: {:2f}% ({:2d}/{:2d})".format(
+                   labels[i],
+                   100 * class_correct[i] / class_total[i],
+                   int(np.sum(class_correct[i])), int(np.sum(class_total[i]))))
+        else:
+            print("Test Accuracy of {:5s}: N/A (no training examples)".format(labels[i]))
+
+    test_losses = test_losses / len(test_loader.dataset)
+    print("Test Loss: {:.6f}, Test Accuracy (Overall): {:.2f}% ({:2d}/{:2d})".format(
+           test_losses,
+           100 * np.sum(class_correct) / np.sum(class_total),
+           int(np.sum(class_correct)), int(np.sum(class_total))))

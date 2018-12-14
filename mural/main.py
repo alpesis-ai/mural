@@ -76,7 +76,7 @@ if __name__ == '__main__':
     elif (args.learning == "INFER_SINGLE"):
         infer_single(test_loader, model, args.dataset)
     elif (args.learning == "INFER_MULTI"):
-        infer_multi()
+        infer_multi(test_loader, model, criterion, args.dataset)
     else:
         print("validation error")
         exit(1)
