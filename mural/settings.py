@@ -25,6 +25,14 @@ DATASETS = [
 
 LEARNING_RATE = 0.01
 
+MODELS = [
+"CLASSIFIER",
+"CLASSIFIER_DROPOUT",
+"MLP",
+"CNN",
+"DENSENET121_TRANS"
+]
+
 #-------------------------------------------------------------------#
 # VISUALIZATION
 
@@ -33,7 +41,7 @@ LEARNING_RATE = 0.01
 # - 1: show a single image
 # - 2: show multi images
 # - 3: show image detail
-IMAGE_EXPLORE = 3
+IMAGE_EXPLORE = 2
 
 #-------------------------------------------------------------------#
 # ROOT SETTINGS
