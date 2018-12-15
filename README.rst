@@ -104,6 +104,10 @@ Style Transfer
 Datasets
 ==============================================================================
 
+------------------------------------------------------------------------------
+Classifer
+------------------------------------------------------------------------------
+
 - `mnist`_
 - `fashion_mnist`_
 - `cifar`_
@@ -118,3 +122,12 @@ Datasets
 Cats & Dogs:
 
 - download data to ``data/cats_dogs``, unzip train.zip to ``data/cats_dogs/train/1``, unzip test1.zip to ``data/cats_dogs/test/1``, to create a new folder inside train and test for adapting to ``torchvision.datasets.ImageFolder()``, otherwise, it could not be loaded.
+
+
+------------------------------------------------------------------------------
+Generator
+------------------------------------------------------------------------------
+
+- `Image Style Transfer Using Convolutional Neural Networks`_
+
+.. _`Image Style Transfer Using Convolutional Neural Networks`: https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf
