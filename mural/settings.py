@@ -59,6 +59,7 @@ DATA_MNIST_DIR = DATA_DIR + "/mnist/"
 DATA_FASHIONMNIST_DIR = DATA_DIR + "/fashion_mnist/"
 DATA_CIFAR10_DIR = DATA_DIR + "/cifar10/"
 DATA_CATSDOGS_DIR = DATA_DIR + "/cats_dogs/"
+DATA_STYLE_TRANSFER_DIR = DATA_DIR + "/style_transfer/"
 
 DATA_MNIST_LABELS = [
 '0',

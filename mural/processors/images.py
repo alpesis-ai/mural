@@ -1,8 +1,9 @@
+import numpy as np
 from PIL import Image
 from torchvision import transforms
 
 
-def load_image(image_path, max_size=400, shape=None):
+def image_load(image_path, max_size=400, shape=None):
     """
     Load an image in and transform it with the size <= 400 pixels in the x-y dims.
     """
