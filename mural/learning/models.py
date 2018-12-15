@@ -3,6 +3,7 @@ from models.classifiers import Classifier, ClassifierWithDropout
 from models.mlp import MLP
 from models.cnn import CNN
 from models.densenet import densenet121_trans
+from models.vgg import vgg19_features
 
 
 def define_model(name):
@@ -20,6 +21,8 @@ def define_model(name):
         model = CNN()
     elif (name == "DENSENET121_TRANS"):
         model = densenet121_trans()
+    elif (name == "VGG19_FEATURES"):
+        model = vgg19_features()
 
     print("{} Model Structure:".format(name))
     print(model)

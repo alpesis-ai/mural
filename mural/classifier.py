@@ -25,7 +25,7 @@ def set_params():
     parser.add_argument('--model',
                         type=str,
                         required=True,
-                        help="Model: [CLASSIFIER, CLASSIFIER_DROPOUT, DENSENET_TRANS]")
+                        help="Model: [CLASSIFIER, CLASSIFIER_DROPOUT, DENSENET_TRANS, VGG19_FEATURES]")
 
     parser.add_argument('--loss',
                         type=str,

@@ -30,7 +30,8 @@ MODELS = [
 "CLASSIFIER_DROPOUT",
 "MLP",
 "CNN",
-"DENSENET121_TRANS"
+"DENSENET121_TRANS",
+"VGG19_FEATURES"
 ]
 
 #-------------------------------------------------------------------#

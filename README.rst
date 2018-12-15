@@ -4,6 +4,11 @@ Mural
 
 Deep learning all in one using PyTorch Framework.
 
+Feature Summary:
+
+- Classifer: multiple image classifiers
+- Generator
+
 ==============================================================================
 How it runs
 ==============================================================================
@@ -34,6 +39,11 @@ Data Download
     $ python scripts/data/mnist.py
     $ python scripts/data/fashion_mnist.py
     $ python scripts/data/cifar10.py
+    $ bash scripts/data/style_transfer.sh
+
+------------------------------------------------------------------------------
+Classifier
+------------------------------------------------------------------------------
 
 Model Parameters
 
@@ -51,7 +61,7 @@ Model Train
 
 ::
 
-    $ python mural/main.py
+    $ python mural/classifier.py
       --dataset CIFAR10
       --model CNN
       --loss CROSSENTROPY
@@ -63,12 +73,15 @@ Model Test
 
 ::
 
-    $ python mural/main.py
+    $ python mural/classifier.py
       --dataset CIFAR10
       --model CNN
       --loss CROSSENTROPY
       --learning INFER_MULTI
 
+------------------------------------------------------------------------------
+Generator
+------------------------------------------------------------------------------
 
 ==============================================================================
 Datasets

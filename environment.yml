@@ -7,4 +7,4 @@ dependencies:
         - torch==0.4.1
         - torchvision==0.2.1
         - matplotlib==3.0.2
-        - helper
+        - pillow==5.3.0

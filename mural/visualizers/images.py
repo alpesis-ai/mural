@@ -32,6 +32,13 @@ def image_show_single(image, ax=None, title=None, normalize=True):
     return ax
 
 
+def image_show_double(image1, image2):
+    figure, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 10))
+    ax1.imshow(image1)
+    ax2.imshow(image2)
+    plt.show()
+
+
 def image_show_multi(images, labels, dataset):
     expected_labels = define_labels(dataset)
 
