@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 
-import settings
+import settings.common
 from learning.labels import define_labels
 
 
@@ -20,7 +20,7 @@ def valid_with_steps(test_loader, model_cls, loss_fn):
  
     model_cls.eval()
     for images, labels in test_loader:
-        images, labels = images.to(settings.DEVICE), labels.to(settings.DEVICE)
+        images, labels = images.to(settings.common.DEVICE), labels.to(settings.common.DEVICE)
         log_probabilities = model_cls.forward(images)
         # valid_loss += loss_fn(log_probabilities, labels)
         loss = loss_fn(log_probabilities, labels)
@@ -43,13 +43,13 @@ def test_multi(test_loader, model_cls, loss_fn, dataset):
 
     model_cls.eval()
     for images, labels in test_loader:
-        images, labels = images.to(settings.DEVICE), labels.to(settings.DEVICE)
+        images, labels = images.to(settings.common.DEVICE), labels.to(settings.common.DEVICE)
         output = model_cls(images)
         loss = loss_fn(output, labels)
         test_loss += loss.item() * images.size(0)
         top_probabilities, top_classes = torch.max(output, 1)
         correct = np.squeeze(top_classes.eq(labels.data.view_as(top_classes)))
-        for i in range(settings.DATA_BATCH_SIZE):
+        for i in range(settings.common.DATA_BATCH_SIZE):
             label = labels.data[i]
             class_correct[label] += correct[i].item()
             class_total[label] += 1

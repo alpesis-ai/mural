@@ -93,15 +93,15 @@ def image_show_detail(images):
     plt.show()
 
 
-def preshow_images(data_loader, dataset):
-    if (settings.IMAGE_EXPLORE == 1):
+def preshow_images(data_loader, show, dataset):
+    if (show == 1):
         image, label = select_data_single(data_loader)
         print(image.shape, label.shape)
         image_show_single(image[0, :])
-    elif (settings.IMAGE_EXPLORE == 2):
+    elif (show == 2):
         images, labels = select_data_multi(data_loader)
         image_show_multi(images, labels, dataset)
-    elif (settings.IMAGE_EXPLORE == 3):
+    elif (show == 3):
         images, labels = select_data_multi(data_loader)
         image_show_detail(images)
 

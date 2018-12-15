@@ -1,4 +1,4 @@
-import settings
+import settings.common
 from models.classifiers import Classifier, ClassifierWithDropout
 from models.mlp import MLP
 from models.cnn import CNN
@@ -7,7 +7,7 @@ from models.vgg import vgg19_features
 
 
 def define_model(name):
-    if name not in settings.MODELS:
+    if name not in settings.common.MODELS:
         print("model name error")
         exit(1)
 

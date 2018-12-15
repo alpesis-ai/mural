@@ -7,7 +7,7 @@ Deep learning all in one using PyTorch Framework.
 Feature Summary:
 
 - Classifer: multiple image classifiers
-- Generator
+- Generator: style transfer
 
 ==============================================================================
 How it runs
@@ -54,7 +54,10 @@ Model Parameters
     # model: CLASSIFIER, CLASSIFIER_DROPOUT, DENSENET_TRANS
     # loss: NLL, CROSSENTROPY
     # optimizer: ADAM, SGD
+    # rate: e.g. 0.01
     # learning: VALID_SINGLE, VALID_STEPS, INFER_SINGLE, INFER_MULTI
+    # imageshow: 0 - not shown, 1 - single, 2 - multi, 3 -detail
+    $ python mural/classifier.py -h
 
 
 Model Train
@@ -66,8 +69,10 @@ Model Train
       --model CNN
       --loss CROSSENTROPY
       --optimizer SGD
+      --rate 0.01
       --epochs 30
       --learning VALID_STEP
+      --imageshow 2
 
 Model Test
 

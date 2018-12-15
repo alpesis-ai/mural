@@ -5,7 +5,7 @@
 SHOW_EVERY = 2 
 
 # decide how many iterations to update your image (default: 5000)
-STEPS = 10
+STEPS = 4
 
 # weights
 CONTENT_WEIGHT = 1

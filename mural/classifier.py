@@ -3,7 +3,7 @@ import argparse
 import torch
 from torchvision import datasets, transforms
 
-import settings
+import settings.common
 from processors.datasets import define_dataset
 from learning.validation import validate_single, validate_steps
 from learning.inference import infer_single, infer_multi
@@ -36,14 +36,24 @@ def set_params():
                         type=str,
                         help="""Optimizer: [ADAM, SGD, ADAM_TRANS, SGD_TRANS]""")
 
+    parser.add_argument('--rate',
+                        type=float,
+                        help="Learning Rate: [e.g. 0.01]")
+
     parser.add_argument('--epochs',
                         type=int,
                         help="epochs (train only)")
+
 
     parser.add_argument('--learning',
                         type=str,
                         required=True,
                         help="learning: [VALID_SINGLE, VALID_STEPS, INFER_SINGLE, INFER_MULTI]")
+
+    parser.add_argument('--imageshow',
+                        type=int,
+                        default=0,
+                        help="imageshow: 0 - not shown, 1 - single, 2 - multi, 3 - detail")
 
     return parser.parse_args()
 
@@ -55,16 +65,16 @@ if __name__ == '__main__':
     train_loader, valid_loader, test_loader = define_dataset(args.dataset)
 
     if "VALID_" in args.learning:
-        preshow_images(train_loader, args.dataset)
+        preshow_images(train_loader, args.imageshow, args.dataset)
     elif "INFER_" in args.learning:
-        preshow_images(test_loader, args.dataset)
+        preshow_images(test_loader, args.imageshow, args.dataset)
 
     model = define_model(args.model)
-    model.to(settings.DEVICE)
+    model.to(settings.common.DEVICE)
 
     criterion = define_loss(args.loss)
     if "VALID_" in args.learning:
-        optimizer = define_optimizer(args.optimizer, model)
+        optimizer = define_optimizer(args.optimizer, args.rate, model)
 
     if (args.learning == "VALID_SINGLE"):
         validate_single(args.epochs, train_loader, valid_loader, model, criterion, optimizer, args.dataset)
