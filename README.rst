@@ -8,6 +8,7 @@ Feature Summary:
 
 - Classifer: multiple image classifiers
 - Generator: style transfer
+- CPU/GPU running mode (automatic detection)
 
 ==============================================================================
 How it runs
