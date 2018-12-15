@@ -8,13 +8,13 @@ from processors.datasets import define_dataset
 from learning.validation import validate_single, validate_steps
 from learning.inference import infer_single, infer_multi
 from learning.losses import define_loss
-from learning.optimizers import define_optimizer
+from learning.optimizers import define_optimizer_classifier
 from learning.models import define_model
 from visualizers.images import preshow_images
 
 
 def set_params():
-    parser = argparse.ArgumentParser(description='Mural Parameters')
+    parser = argparse.ArgumentParser(description='Mural Classifier Parameters')
 
     parser.add_argument('--dataset',
                         type=str,
@@ -74,7 +74,7 @@ if __name__ == '__main__':
 
     criterion = define_loss(args.loss)
     if "VALID_" in args.learning:
-        optimizer = define_optimizer(args.optimizer, args.rate, model)
+        optimizer = define_optimizer_classifier(args.optimizer, args.rate, model)
 
     if (args.learning == "VALID_SINGLE"):
         validate_single(args.epochs, train_loader, valid_loader, model, criterion, optimizer, args.dataset)

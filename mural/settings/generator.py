@@ -1,12 +1,6 @@
 #-----------------------------------------------------------------------------
 # Generator
 
-# for displaying the target image, intermittently (default: 400)
-SHOW_EVERY = 2 
-
-# decide how many iterations to update your image (default: 5000)
-STEPS = 4
-
 # weights
 CONTENT_WEIGHT = 1
 STYLE_WEIGHT = 1e6
@@ -34,3 +28,4 @@ VGG19_STYLE_WEIGHTS = {
 'conv5_1': 0.2
 }
 
+VGG19_CONTENT_LAYER = 'conv4_2'
