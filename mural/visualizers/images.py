@@ -5,6 +5,17 @@ import settings
 from processors.data_selection import select_data_single, select_data_multi
 from learning.labels import define_labels
 
+def tensorimage_show_single(image):
+    plt.imshow(image)
+    plt.show()
+
+
+def tensorimage_show_double(image1, image2):
+    figure, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 10))
+    ax1.imshow(image1)
+    ax2.imshow(image2)
+    plt.show()
+
 
 def image_show_single(image, ax=None, title=None, normalize=True):
     """
@@ -30,13 +41,6 @@ def image_show_single(image, ax=None, title=None, normalize=True):
     ax.set_yticklabels('')
     plt.show(ax)
     return ax
-
-
-def image_show_double(image1, image2):
-    figure, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 10))
-    ax1.imshow(image1)
-    ax2.imshow(image2)
-    plt.show()
 
 
 def image_show_multi(images, labels, dataset):
