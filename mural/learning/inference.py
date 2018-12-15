@@ -29,12 +29,12 @@ def infer_multi(test_loader, model_cls, loss_fn, dataset):
     label_names = define_labels(dataset)
     for i in range(len(label_names)):
         if class_total[i] > 0:
-            print("Test Accuracy of {:5s}: {:2f}% ({:2d}/{:2d})".format(
+            print("Test Accuracy of {:10s}: {:2f}% ({:2d}/{:2d})".format(
                    label_names[i],
                    100 * class_correct[i] / class_total[i],
                    int(np.sum(class_correct[i])), int(np.sum(class_total[i]))))
         else:
-            print("Test Accuracy of {:5s}: N/A (no training examples)".format(labels[i]))
+            print("Test Accuracy of {:10s}: N/A (no training examples)".format(labels[i]))
 
     test_loss = test_loss / len(test_loader.dataset)
     print("Test Loss: {:.6f}, Test Accuracy (Overall): {:.2f}% ({:2d}/{:2d})".format(
