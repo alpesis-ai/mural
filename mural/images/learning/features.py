@@ -1,6 +1,7 @@
 import torch
 
-import settings.common
+import settings
+import images.settings.generator
 from images.data.features import features_generate
 from images.data.tensors import gram_matrix
 from images.data.images import image_load, image_convert
@@ -8,22 +9,22 @@ from images.visualizers.images import tensorimage_show_single, tensorimage_show_
 
 
 def define_features(modelname, model, image):
-    if modelname not in settings.common.MODELS:
+    if modelname not in settings.MODELS:
         print("model name error")
         exit(1)
     
     if modelname == "VGG19_FEATURES":
-        features = features_generate(image, model, settings.generator.VGG19_FEATURE_LAYERS)
+        features = features_generate(image, model, images.settings.generator.VGG19_FEATURE_LAYERS)
     return features
 
 
 def define_style_weights(modelname):
-    if modelname not in settings.common.MODELS:
+    if modelname not in settings.MODELS:
         print("model name error")
         exit(1)
     
     if modelname == "VGG19_FEATURES":
-        style_weights = settings.generator.VGG19_STYLE_WEIGHTS
+        style_weights = images.settings.generator.VGG19_STYLE_WEIGHTS
     return style_weights
 
 
@@ -35,12 +36,12 @@ def feature_style_gram(modelname, model, content, style):
 
 
 def content_generate(modelname, target_features, content_features):
-    if modelname not in settings.common.MODELS:
+    if modelname not in settings.MODELS:
         print("model name error")
         exit(1)
     
     if modelname == "VGG19_FEATURES":
-        layer = settings.generator.VGG19_CONTENT_LAYER
+        layer = images.settings.generator.VGG19_CONTENT_LAYER
 
     content_loss = torch.mean((target_features[layer] - content_features[layer])**2)
     return content_loss
@@ -66,8 +67,8 @@ def style_transfer(target, content_features, style_grams, modelname, model, opti
         target_features = define_features(modelname, model, target)
         content_loss = content_generate(modelname, target_features, content_features)
         style_loss = style_generate(modelname, target_features, style_grams) 
-        total_loss = settings.generator.CONTENT_WEIGHT * content_loss + \
-                     settings.generator.STYLE_WEIGHT * style_loss
+        total_loss = images.settings.generator.CONTENT_WEIGHT * content_loss + \
+                     images.settings.generator.STYLE_WEIGHT * style_loss
 
         # update target image
         optimizer.zero_grad()

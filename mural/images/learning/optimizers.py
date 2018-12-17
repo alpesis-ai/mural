@@ -1,10 +1,10 @@
 from torch import optim
 
-import settings.common
+import settings
 
 
 def define_optimizer_classifier(name, rate, model):
-    if name not in settings.common.OPTIMIZERS:
+    if name not in settings.OPTIMIZERS:
         print("Optimizer unknown")
         exit(1)
 
@@ -21,7 +21,7 @@ def define_optimizer_classifier(name, rate, model):
 
 
 def define_optimizer_generator(name, rate, values):
-    if name not in settings.common.OPTIMIZERS:
+    if name not in settings.OPTIMIZERS:
         print("Optimizer unknown")
         exit(1)
 

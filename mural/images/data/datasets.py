@@ -2,18 +2,18 @@ import torch
 from torchvision import datasets, transforms
 from torch.utils.data.sampler import SubsetRandomSampler
 
-import settings.common
+import settings
 from images.data.data_selection import split_dataset
 
 
 def load_mnist():
     transform = transforms.Compose([transforms.ToTensor(),
                                     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-    train_data = datasets.FashionMNIST(settings.common.DATA_MNIST_DIR,
+    train_data = datasets.FashionMNIST(settings.DATA_MNIST_DIR,
                                        download=False,
                                        train=True,
                                        transform=transform)
-    test_data = datasets.FashionMNIST(settings.common.DATA_MNIST_DIR,
+    test_data = datasets.FashionMNIST(settings.DATA_MNIST_DIR,
                                       download=False,
                                       train=False,
                                       transform=transform)
@@ -23,11 +23,11 @@ def load_mnist():
 def load_fashionmnist():
     transform = transforms.Compose([transforms.ToTensor(),
                                     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-    train_data = datasets.FashionMNIST(settings.common.DATA_FASHIONMNIST_DIR,
+    train_data = datasets.FashionMNIST(settings.DATA_FASHIONMNIST_DIR,
                                        download=False,
                                        train=True,
                                        transform=transform)
-    test_data = datasets.FashionMNIST(settings.common.DATA_FASHIONMNIST_DIR,
+    test_data = datasets.FashionMNIST(settings.DATA_FASHIONMNIST_DIR,
                                       download=False,
                                       train=False,
                                       transform=transform)
@@ -39,11 +39,11 @@ def load_cifar10():
                                     transforms.RandomRotation(10),
                                     transforms.ToTensor(),
                                     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-    train_data = datasets.CIFAR10(settings.common.DATA_CIFAR10_DIR,
+    train_data = datasets.CIFAR10(settings.DATA_CIFAR10_DIR,
                                   train=True,
                                   download=False,
                                   transform=transform)
-    test_data = datasets.CIFAR10(settings.common.DATA_CIFAR10_DIR,
+    test_data = datasets.CIFAR10(settings.DATA_CIFAR10_DIR,
                                  train=False,
                                  download=False,
                                  transform=transform) 
@@ -59,9 +59,9 @@ def load_catsdogs():
                                          transforms.CenterCrop(224),
                                          transforms.ToTensor()])
 
-    train_data = datasets.ImageFolder(settings.common.DATA_CATSDOGS_DIR + '/train',
+    train_data = datasets.ImageFolder(settings.DATA_CATSDOGS_DIR + '/train',
                                       transform=train_transform)
-    test_data = datasets.ImageFolder(settings.common.DATA_CATSDOGS_DIR + '/test',
+    test_data = datasets.ImageFolder(settings.DATA_CATSDOGS_DIR + '/test',
                                      transform=test_transform)
     return train_data, test_data
 
@@ -73,22 +73,22 @@ def generate_loader(train_data, test_data):
     valid_sampler = SubsetRandomSampler(valid_idx)
 
     train_loader = torch.utils.data.DataLoader(train_data,
-                                               batch_size=settings.common.DATA_BATCH_SIZE,
+                                               batch_size=settings.DATA_BATCH_SIZE,
                                                sampler=train_sampler,
-                                               num_workers=settings.common.DATA_NUM_WORKERS)
+                                               num_workers=settings.DATA_NUM_WORKERS)
     valid_loader = torch.utils.data.DataLoader(train_data,
-                                               batch_size=settings.common.DATA_BATCH_SIZE, 
+                                               batch_size=settings.DATA_BATCH_SIZE, 
                                                sampler=valid_sampler,
-                                               num_workers=settings.common.DATA_NUM_WORKERS)
+                                               num_workers=settings.DATA_NUM_WORKERS)
     test_loader = torch.utils.data.DataLoader(test_data,
-                                              batch_size=settings.common.DATA_BATCH_SIZE, 
-                                              num_workers=settings.common.DATA_NUM_WORKERS)
+                                              batch_size=settings.DATA_BATCH_SIZE, 
+                                              num_workers=settings.DATA_NUM_WORKERS)
 
     return train_loader, valid_loader, test_loader
     
 
 def define_dataset(name):
-    if name not in settings.common.DATASETS:
+    if name not in settings.DATASETS:
         print("Dataset input error.")
         exit(1)
 

@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 
-import settings.common
+import settings
 from images.learning.train import train, train_with_steps
 from images.learning.test import test, valid_with_steps
 from images.visualizers.images import image_predict_single
@@ -46,7 +46,7 @@ def validate_steps(epochs, train_loader, valid_loader, model, criterion, optimiz
         if (this_valid_loss <= valid_loss_min):
             print("----> Validation loss decreased ({:.6f} -> {:.6f}), saving model...".format(
                    valid_loss_min, this_valid_loss))
-            torch.save(model.state_dict(), settings.common.WEIGHT_PATH + 'checkpoint.pth')
+            torch.save(model.state_dict(), settings.WEIGHT_PATH + 'checkpoint.pth')
             valid_loss_min = this_valid_loss
 
     loss_compare(train_losses, valid_losses, "Training Losses", "Validation Losses")

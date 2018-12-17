@@ -3,7 +3,7 @@ import argparse
 import torch
 from torchvision import datasets, transforms
 
-import settings.common
+import settings
 from images.data.datasets import define_dataset
 from images.learning.validation import validate_single, validate_steps
 from images.learning.inference import infer_single, infer_multi
@@ -70,7 +70,7 @@ if __name__ == '__main__':
         preshow_images(test_loader, args.imageshow, args.dataset)
 
     model = define_model(args.model)
-    model.to(settings.common.DEVICE)
+    model.to(settings.DEVICE)
 
     criterion = define_loss(args.loss)
     if "VALID_" in args.learning:

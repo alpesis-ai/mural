@@ -6,7 +6,7 @@ Deep learning all in one using PyTorch Framework.
 
 Feature Summary:
 
-- datasets:
+- data types:
     - images: image classifier, image generator
     - texts: text classifier, text generator
     - time series: timeseries predictor

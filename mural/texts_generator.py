@@ -2,7 +2,7 @@ import torch
 from torch import nn
 import numpy as np
 
-import settings.common
+import settings
 from texts.models.charrnn import CharRNN
 from texts.data.texts import tokenize, onehot_encode, get_batches
 
@@ -27,7 +27,7 @@ def train(net, data, epochs=10, batch_size=10, seq_length=50, lr=0.001, clip=5, 
             x = onehot_encode(x, n_chars)
             inputs, targets = torch.from_numpy(x), torch.from_numpy(y)
             
-            inputs, targets = inputs.to(settings.common.DEVICE), targets.to(settings.common.DEVICE)
+            inputs, targets = inputs.to(settings.DEVICE), targets.to(settings.DEVICE)
 
             # Creating new variables for the hidden state, otherwise
             # we'd backprop through the entire training history
@@ -56,7 +56,7 @@ def train(net, data, epochs=10, batch_size=10, seq_length=50, lr=0.001, clip=5, 
                     val_h = tuple([each.data for each in val_h])
                     
                     inputs, targets = x, y
-                    inputs, targets = inputs.to(settings.common.DEVICE), targets.to(settings.common.DEVICE)
+                    inputs, targets = inputs.to(settings.DEVICE), targets.to(settings.DEVICE)
 
                     output, val_h = net(inputs, val_h)
                     val_loss = criterion(output, targets.view(batch_size*seq_length))
@@ -71,7 +71,7 @@ def train(net, data, epochs=10, batch_size=10, seq_length=50, lr=0.001, clip=5, 
                       "Val Loss: {:.4f}".format(np.mean(val_losses)))
 
 if __name__ == '__main__':
-    with open(settings.common.DATA_CHARRNN_DIR + 'dummy.txt', 'r') as f:
+    with open(settings.DATA_CHARRNN_DIR + 'dummy.txt', 'r') as f:
         text = f.read()
     encoded = tokenize(text)
 

@@ -1,6 +1,6 @@
 from torch import nn
 
-import settings.common
+import settings
 
 
 class CharRNN(nn.Module):
@@ -48,9 +48,9 @@ class CharRNN(nn.Module):
         # initialized to zero, for hidden state and cell state of LSTM
         weight = next(self.parameters()).data
         
-        if (settings.common.DEVICE):
-            hidden = (weight.new(self.n_layers, batch_size, self.n_hidden).zero_().to(settings.common.DEVICE),
-                  weight.new(self.n_layers, batch_size, self.n_hidden).zero_().to(settings.common.DEVICE))
+        if (settings.DEVICE):
+            hidden = (weight.new(self.n_layers, batch_size, self.n_hidden).zero_().to(settings.DEVICE),
+                  weight.new(self.n_layers, batch_size, self.n_hidden).zero_().to(settings.DEVICE))
         else:
             hidden = (weight.new(self.n_layers, batch_size, self.n_hidden).zero_(),
                       weight.new(self.n_layers, batch_size, self.n_hidden).zero_())

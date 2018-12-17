@@ -12,7 +12,7 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # root path
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROJECT_ROOT = PROJECT_ROOT + "/../"
+PROJECT_ROOT = PROJECT_ROOT
 
 #-------------------------------------------------------------------#
 # DATA PATHS
