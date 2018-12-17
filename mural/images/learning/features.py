@@ -1,10 +1,10 @@
 import torch
 
 import settings.common
-from processors.features import features_generate
-from processors.tensors import gram_matrix
-from processors.images import image_load, image_convert
-from visualizers.images import tensorimage_show_single, tensorimage_show_double
+from images.data.features import features_generate
+from images.data.tensors import gram_matrix
+from images.data.images import image_load, image_convert
+from images.visualizers.images import tensorimage_show_single, tensorimage_show_double
 
 
 def define_features(modelname, model, image):

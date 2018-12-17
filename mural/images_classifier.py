@@ -4,13 +4,13 @@ import torch
 from torchvision import datasets, transforms
 
 import settings.common
-from processors.datasets import define_dataset
-from learning.validation import validate_single, validate_steps
-from learning.inference import infer_single, infer_multi
-from learning.losses import define_loss
-from learning.optimizers import define_optimizer_classifier
-from learning.models import define_model
-from visualizers.images import preshow_images
+from images.data.datasets import define_dataset
+from images.learning.validation import validate_single, validate_steps
+from images.learning.inference import infer_single, infer_multi
+from images.learning.losses import define_loss
+from images.learning.optimizers import define_optimizer_classifier
+from images.learning.models import define_model
+from images.visualizers.images import preshow_images
 
 
 def set_params():

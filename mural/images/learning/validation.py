@@ -2,10 +2,10 @@ import torch
 import numpy as np
 
 import settings.common
-from learning.train import train, train_with_steps
-from learning.test import test, valid_with_steps
-from visualizers.images import image_predict_single
-from visualizers.eval import loss_compare
+from images.learning.train import train, train_with_steps
+from images.learning.test import test, valid_with_steps
+from images.visualizers.images import image_predict_single
+from images.visualizers.eval import loss_compare
 
 
 def validate_single(epochs, train_loader, valid_loader, model, criterion, optimizer, dataset):

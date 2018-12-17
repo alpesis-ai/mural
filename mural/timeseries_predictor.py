@@ -3,9 +3,9 @@ from torch import nn
 import numpy as np
 import matplotlib.pyplot as plt
 
-from models.rnn import RNN
-from processors.timeseries import timesteps_generate, timeseries_generate
-from visualizers.data import scatter_plot
+from timeseries.models.rnn import RNN
+from timeseries.data.timeseries import timesteps_generate, timeseries_generate
+from timeseries.visualizers.data import scatter_plot
 
 def train(rnn, n_steps, print_every):
     

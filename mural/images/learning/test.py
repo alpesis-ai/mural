@@ -2,7 +2,7 @@ import torch
 import numpy as np
 
 import settings.common
-from learning.labels import define_labels
+from images.learning.labels import define_labels
 
 
 def test(image, model_cls):

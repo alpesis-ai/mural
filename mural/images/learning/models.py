@@ -1,9 +1,9 @@
 import settings.common
-from models.classifiers import Classifier, ClassifierWithDropout
-from models.mlp import MLP
-from models.cnn import CNN
-from models.densenet import densenet121_trans
-from models.vgg import vgg19_features
+from images.models.classifiers import Classifier, ClassifierWithDropout
+from images.models.mlp import MLP
+from images.models.cnn import CNN
+from images.models.densenet import densenet121_trans
+from images.models.vgg import vgg19_features
 
 
 def define_model(name):

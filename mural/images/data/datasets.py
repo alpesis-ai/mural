@@ -3,7 +3,7 @@ from torchvision import datasets, transforms
 from torch.utils.data.sampler import SubsetRandomSampler
 
 import settings.common
-from processors.data_selection import split_dataset
+from images.data.data_selection import split_dataset
 
 
 def load_mnist():

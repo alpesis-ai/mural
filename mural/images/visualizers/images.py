@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 import settings
-from processors.data_selection import select_data_single, select_data_multi
-from learning.labels import define_labels
+from images.data.data_selection import select_data_single, select_data_multi
+from images.learning.labels import define_labels
 
 def tensorimage_show_single(image):
     plt.imshow(image)

@@ -2,11 +2,11 @@ import argparse
 
 import settings.common
 import settings.generator
-from learning.optimizers import define_optimizer_generator
-from learning.features import feature_style_gram, style_transfer
-from learning.models import define_model
-from processors.images import image_load, image_convert
-from visualizers.images import tensorimage_show_single, tensorimage_show_double
+from images.learning.optimizers import define_optimizer_generator
+from images.learning.features import feature_style_gram, style_transfer
+from images.learning.models import define_model
+from images.data.images import image_load, image_convert
+from images.visualizers.images import tensorimage_show_single, tensorimage_show_double
 
 
 def set_params():

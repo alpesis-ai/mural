@@ -2,9 +2,9 @@ import torch
 import numpy as np
 
 import settings
-from learning.test import test, test_multi
-from learning.labels import define_labels
-from visualizers.images import image_predict_single, image_predict_multi
+from images.learning.test import test, test_multi
+from images.learning.labels import define_labels
+from images.visualizers.images import image_predict_single, image_predict_multi
 
 
 def infer_single(test_loader, model_cls, dataset):
