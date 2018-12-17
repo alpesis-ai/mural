@@ -40,16 +40,16 @@ Data Download
 
     # download data into the folder `_data`
     # image classification
-    $ python scripts/data/mnist.py
-    $ python scripts/data/fashion_mnist.py
-    $ python scripts/data/cifar10.py
+    $ python scripts/data/images_mnist.py
+    $ python scripts/data/images_fashionmnist.py
+    $ python scripts/data/images_cifar10.py
 
     # image generation
-    $ bash scripts/data/style_transfer.sh
+    $ bash scripts/data/images_styletransfer.sh
 
     # texts
-    $ bash scripts/data/charrcnn.sh
-    $ bash scripts/data/sentiment_analysis.sh
+    $ bash scripts/data/texts_charrcnn.sh
+    $ bash scripts/data/texts_sentiment.sh
 
 ------------------------------------------------------------------------------
 Image Classifier
