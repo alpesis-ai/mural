@@ -7,9 +7,9 @@ import settings
 from images.data.datasets import define_dataset
 from images.learning.validation import validate_single, validate_steps
 from images.learning.inference import infer_single, infer_multi
-from images.learning.losses import define_loss
-from images.learning.optimizers import define_optimizer_classifier
-from images.learning.models import define_model
+from common.managers.losses import define_loss
+from common.managers.optimizers import define_optimizer_classifier
+from common.managers.models import define_model
 from images.visualizers.images import preshow_images
 
 
