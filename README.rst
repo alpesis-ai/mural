@@ -6,8 +6,14 @@ Deep learning all in one using PyTorch Framework.
 
 Feature Summary:
 
-- Classifer: multiple image classifiers
-- Generator: style transfer
+- Images:
+    - Classifer: multiple image classifiers
+    - Generator: style transfer
+- Time Series:
+    - Predictor: RNN 
+- Texts:
+    - Classifier: sentimental analysis
+    - Generator: LSTM
 - CPU/GPU running mode (automatic detection)
 
 ==============================================================================
@@ -37,10 +43,17 @@ Data Download
 ::
 
     # download data into the folder `_data`
+    # image classification
     $ python scripts/data/mnist.py
     $ python scripts/data/fashion_mnist.py
     $ python scripts/data/cifar10.py
+
+    # image generation
     $ bash scripts/data/style_transfer.sh
+
+    # texts
+    $ bash scripts/data/charrcnn.sh
+    $ bash scripts/data/sentiment_analysis.sh
 
 ------------------------------------------------------------------------------
 Classifier

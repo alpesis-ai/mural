@@ -18,12 +18,15 @@ PROJECT_ROOT = PROJECT_ROOT + "/../"
 # DATA PATHS
 
 DATA_DIR = PROJECT_ROOT + "/_data"
-
+# image classification
 DATA_MNIST_DIR = DATA_DIR + "/mnist/"
 DATA_FASHIONMNIST_DIR = DATA_DIR + "/fashion_mnist/"
 DATA_CIFAR10_DIR = DATA_DIR + "/cifar10/"
 DATA_CATSDOGS_DIR = DATA_DIR + "/cats_dogs/"
+# image generate
 DATA_STYLE_TRANSFER_DIR = DATA_DIR + "/style_transfer/"
+# texts
+DATA_CHARRNN_DIR = DATA_DIR + "/charrnn/"
 
 #-------------------------------------------------------------------#
 # WEIGHTS PATHS

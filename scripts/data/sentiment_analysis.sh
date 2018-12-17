@@ -1,0 +1,2 @@
+wget https://raw.githubusercontent.com/alpesis-mooc/udacity-nd188-pytorch-facebook-challenge/master/deep-learning-v2-pytorch/sentiment-rnn/data/reviews.txt -O $(PWD)/_data/sentiment_analysis/reviews.txt
+wget https://raw.githubusercontent.com/alpesis-mooc/udacity-nd188-pytorch-facebook-challenge/master/deep-learning-v2-pytorch/sentiment-rnn/data/labels.txt -O $(PWD)/_data/sentiment_analysis/labels.txt
