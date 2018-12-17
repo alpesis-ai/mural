@@ -3,7 +3,7 @@ from torch import nn
 import numpy as np
 import matplotlib.pyplot as plt
 
-from timeseries.models.rnn import RNN
+from common.models.rnn import RNN
 from timeseries.data.timeseries import timesteps_generate, timeseries_generate
 from timeseries.visualizers.data import scatter_plot
 

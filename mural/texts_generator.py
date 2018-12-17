@@ -3,7 +3,7 @@ from torch import nn
 import numpy as np
 
 import settings
-from texts.models.charrnn import CharRNN
+from common.models.charrnn import CharRNN
 from texts.data.texts import tokenize, onehot_encode, get_batches
 
 def train(net, data, epochs=10, batch_size=10, seq_length=50, lr=0.001, clip=5, val_frac=0.1, print_every=10):
