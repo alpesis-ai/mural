@@ -122,6 +122,39 @@ Text Generator
 Time Series
 ------------------------------------------------------------------------------
 
+==============================================================================
+Models
+==============================================================================
+
+
+------------------------------------------------------------------------------
+Image Classifer
+------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------
+Image Generator
+------------------------------------------------------------------------------
+
+- `Image Style Transfer Using Convolutional Neural Networks`_
+
+.. _`Image Style Transfer Using Convolutional Neural Networks`: https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf
+
+------------------------------------------------------------------------------
+Text Classifier
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+Text Generator
+------------------------------------------------------------------------------
+
+- `CharRNN: The Unreasonable Effectiveness of Recurrent Neural Networks`_
+
+.. _`CharRNN: The Unreasonable Effectiveness of Recurrent Neural Networks`: http://karpathy.github.io/2015/05/21/rnn-effectiveness/
+
+------------------------------------------------------------------------------
+Time Series
+------------------------------------------------------------------------------
 
 ==============================================================================
 Datasets
@@ -150,10 +183,6 @@ Cats & Dogs:
 ------------------------------------------------------------------------------
 Image Generator
 ------------------------------------------------------------------------------
-
-- `Image Style Transfer Using Convolutional Neural Networks`_
-
-.. _`Image Style Transfer Using Convolutional Neural Networks`: https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf
 
 
 ------------------------------------------------------------------------------
