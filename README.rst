@@ -48,7 +48,7 @@ Data Download
     $ bash scripts/data/images_styletransfer.sh
 
     # texts
-    $ bash scripts/data/texts_charrcnn.sh
+    $ bash scripts/data/texts_books.sh
     $ bash scripts/data/texts_sentiment.sh
 
 ------------------------------------------------------------------------------

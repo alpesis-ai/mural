@@ -1,6 +1,7 @@
 import argparse
 
 import settings
+from common.managers.datasets import define_dataset_texts
 from common.managers.models import define_model_texts
 from common.managers.losses import define_loss
 from common.managers.optimizers import define_optimizer_classifier
@@ -10,6 +11,11 @@ from texts.data.texts import tokenize, onehot_encode, get_batches
 
 def set_params():
     parser = argparse.ArgumentParser(description='Mural Classifier Parameters')
+
+    parser.add_argument('--dataset',
+                        type=str,
+                        required=True,
+                        help="Dataset: [BOOK_DUMMY, BOOK_ANNA]")
 
     parser.add_argument('--loss',
                         type=str,
@@ -56,15 +62,11 @@ if __name__ == '__main__':
     
     args = set_params()
 
-    with open(settings.DATA_CHARRNN_DIR + 'dummy.txt', 'r') as f:
-        text = f.read()
-    encoded = tokenize(text)
-    valid_idx = int(len(encoded)*(1-settings.DATA_VALID_SIZE))
-    train_data, valid_data = encoded[:valid_idx], encoded[valid_idx:]
+    train_raw, train_data, valid_data = define_dataset_texts(args.dataset)
 
     n_hidden=512
     n_layers=2
-    chars = tuple(set(text))
+    chars = tuple(set(train_raw))
     model = define_model_texts(args.model, chars, n_hidden, n_layers)
 
     optimizer = define_optimizer_classifier(args.optimizer, args.rate, model)

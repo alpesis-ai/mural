@@ -4,7 +4,7 @@ import torch
 from torchvision import datasets, transforms
 
 import settings
-from images.data.datasets import define_dataset
+from common.managers.datasets import define_dataset
 from images.learning.validation import validate_single, validate_steps
 from images.learning.inference import infer_single, infer_multi
 from common.managers.losses import define_loss

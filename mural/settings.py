@@ -26,7 +26,7 @@ DATA_CATSDOGS_DIR = DATA_DIR + "/cats_dogs/"
 # image generate
 DATA_STYLE_TRANSFER_DIR = DATA_DIR + "/style_transfer/"
 # texts
-DATA_CHARRNN_DIR = DATA_DIR + "/charrnn/"
+DATA_BOOKS_DIR = DATA_DIR + "/books/"
 
 #-------------------------------------------------------------------#
 # WEIGHTS PATHS
@@ -46,7 +46,9 @@ DATASETS = [
 "MNIST",
 "FASHIONMNIST",
 "CIFAR10",
-"CATSDOGS"
+"CATSDOGS",
+"BOOK_DUMMY",
+"BOOK_ANNA"
 ]
 
 #-------------------------------------------------------------------#

@@ -85,21 +85,3 @@ def generate_loader(train_data, test_data):
                                               num_workers=settings.DATA_NUM_WORKERS)
 
     return train_loader, valid_loader, test_loader
-    
-
-def define_dataset(name):
-    if name not in settings.DATASETS:
-        print("Dataset input error.")
-        exit(1)
-
-    if (name == "MNIST"):
-        train_data, test_data = load_mnist()
-    elif (name == "FASHIONMNIST"):
-        train_data, test_data = load_fashionmnist()
-    elif (name == "CIFAR10"):
-        train_data, test_data = load_cifar10()
-    elif (name == "CATSDOGS"):
-        train_data, test_data = load_catsdogs()
-
-    train_loader, valid_loader, test_loader = generate_loader(train_data, test_data)
-    return train_loader, valid_loader, test_loader
