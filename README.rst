@@ -8,7 +8,7 @@ Feature Summary:
 
 - applications:
     - images: image classifier, image generator
-    - texts: text classifier, text generator
+    - texts: text classifier, text predictor
     - time series: timeseries predictor
 - datasets:
     - images: mnist, fashion mnist, cifar10, catsdogs
@@ -119,8 +119,64 @@ Text Classifier
 
 
 ------------------------------------------------------------------------------
-Text Generator
+Text Predictor
 ------------------------------------------------------------------------------
+
+Parameters
+
+::
+
+    # common:
+    # - dataset: BOOK_DUMMY, BOOK_ANNA
+    # - learning: VALID_STEPS, PREDICT
+    # - model: CHARRNN
+    
+    # train:
+    # - loss: CROSSENTROPY
+    # - optimizer: ADAM
+    # - rate: 
+    # - epochs:
+    # - batchsize
+    # - seqlength
+    # - clip
+    
+    # test:
+    # - predict_size:
+    # - predict_prime
+    # - predict_topk
+    
+    $ python mural/texts_predictor.py -h
+     
+
+Train
+
+::
+
+    $ python mural/texts_predictor.py
+      --dataset BOOK_ANNA
+      --model CHARRNN
+      --loss CROSSENTROPY
+      --optimizer ADAM
+      --rate 0.001
+      --epochs 20
+      --batchsize 128
+      --seqlength 100
+      --clip 5
+      --learning VALID_STEPS
+      --imageloop 10
+
+
+Predict
+
+::
+
+    $ python mural/texts_predictor.py
+      --dataset BOOK_DUMMY
+      --model CHARRNN
+      --learning PREDICT
+      --predict_size 1000
+      --predict_prime Anna
+      --predict_topk 5
 
 ------------------------------------------------------------------------------
 Time Series
@@ -149,7 +205,7 @@ Text Classifier
 ------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------
-Text Generator
+Text Predictor
 ------------------------------------------------------------------------------
 
 - `CharRNN: The Unreasonable Effectiveness of Recurrent Neural Networks`_
@@ -195,7 +251,7 @@ Text Classifier
 
 
 ------------------------------------------------------------------------------
-Text Generator
+Text Predictor
 ------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------

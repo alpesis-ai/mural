@@ -24,6 +24,8 @@ def infer_single(test_loader, model_cls, dataset):
 
 
 def infer_multi(test_loader, model_cls, loss_fn, dataset):
+    state_dict = torch.load(settings.WEIGHT_PATH + 'checkpoint.pth')
+    model_cls.load_state_dict(state_dict)
     predicted_probabilities, predicted_labels, test_loss, class_correct, class_total = test_multi(test_loader, model_cls, loss_fn, dataset)
 
     label_names = define_labels(dataset)

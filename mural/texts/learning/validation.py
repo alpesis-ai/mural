@@ -1,5 +1,7 @@
+import torch
 import numpy as np
 
+import settings
 from texts.learning.train import train_single
 from texts.learning.test import valid_with_steps
 from texts.data.texts import get_batches
@@ -23,3 +25,5 @@ def validate_steps(epochs, train_data, valid_data, model_cls, loss_fn, optimizer
                       "Step: {}...".format(steps),
                       "Train Loss: {:.4f}...".format(train_loss.item()),
                       "Validation Loss: {:.4f}".format(np.mean(valid_losses)))
+
+        torch.save(model_cls.state_dict(), settings.WEIGHT_PATH + 'checkpoint.pth')
