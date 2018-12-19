@@ -59,7 +59,7 @@ Data Download
 Image Classifier
 ------------------------------------------------------------------------------
 
-Model Parameters
+Parameters
 
 ::
 
@@ -74,7 +74,7 @@ Model Parameters
     $ python mural/classifier.py -h
 
 
-Model Train
+Train
 
 ::
 
@@ -88,7 +88,7 @@ Model Train
       --learning VALID_STEP
       --imageshow 2
 
-Model Test
+Test
 
 ::
 
