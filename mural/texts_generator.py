@@ -1,7 +1,7 @@
 import argparse
 
 import settings
-from common.managers.models import define_model
+from common.managers.models import define_model_texts
 from common.managers.losses import define_loss
 from common.managers.optimizers import define_optimizer_classifier
 from texts.learning.validation import validate_steps
@@ -65,7 +65,7 @@ if __name__ == '__main__':
     n_hidden=512
     n_layers=2
     chars = tuple(set(text))
-    model = define_model(args.model, chars, n_hidden, n_layers)
+    model = define_model_texts(args.model, chars, n_hidden, n_layers)
 
     optimizer = define_optimizer_classifier(args.optimizer, args.rate, model)
     criterion = define_loss(args.loss)

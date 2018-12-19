@@ -7,7 +7,7 @@ from common.models.vgg import vgg19_features
 from common.models.charrnn import CharRNN
 
 
-def define_model(name, values, num_hidden, num_layers):
+def define_model(name):
     if name not in settings.MODELS:
         print("model name error")
         exit(1)
@@ -24,7 +24,18 @@ def define_model(name, values, num_hidden, num_layers):
         model = densenet121_trans()
     elif (name == "VGG19_FEATURES"):
         model = vgg19_features()
-    elif (name == "CHARRNN"):
+
+    print("{} Model Structure:".format(name))
+    print(model)
+    return model
+
+
+def define_model_texts(name, values, num_hidden, num_layers):
+    if name not in settings.MODELS:
+        print("model name error")
+        exit(1)
+
+    if (name == "CHARRNN"):
         model = CharRNN(values, num_hidden, num_layers)
 
     print("{} Model Structure:".format(name))
