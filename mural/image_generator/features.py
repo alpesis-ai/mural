@@ -1,7 +1,7 @@
 import torch
 
 import settings
-import common.data.generator
+import common.settings.generator
 from common.visualizers.images import tensorimage_show_single, tensorimage_show_double
 from image_generator.datasets import image_load, image_convert
 
@@ -45,7 +45,7 @@ def define_features(modelname, model, image):
         exit(1)
     
     if modelname == "VGG19_FEATURES":
-        features = features_generate(image, model, common.data.generator.VGG19_FEATURE_LAYERS)
+        features = features_generate(image, model, common.settings.generator.VGG19_FEATURE_LAYERS)
     return features
 
 
@@ -55,7 +55,7 @@ def define_style_weights(modelname):
         exit(1)
     
     if modelname == "VGG19_FEATURES":
-        style_weights = common.data.generator.VGG19_STYLE_WEIGHTS
+        style_weights = common.settings.generator.VGG19_STYLE_WEIGHTS
     return style_weights
 
 
@@ -72,7 +72,7 @@ def content_generate(modelname, target_features, content_features):
         exit(1)
     
     if modelname == "VGG19_FEATURES":
-        layer = common.data.generator.VGG19_CONTENT_LAYER
+        layer = common.settings.generator.VGG19_CONTENT_LAYER
 
     content_loss = torch.mean((target_features[layer] - content_features[layer])**2)
     return content_loss
@@ -98,8 +98,8 @@ def style_transfer(target, content_features, style_grams, modelname, model, opti
         target_features = define_features(modelname, model, target)
         content_loss = content_generate(modelname, target_features, content_features)
         style_loss = style_generate(modelname, target_features, style_grams) 
-        total_loss = common.data.generator.CONTENT_WEIGHT * content_loss + \
-                     common.data.generator.STYLE_WEIGHT * style_loss
+        total_loss = common.settings.generator.CONTENT_WEIGHT * content_loss + \
+                     common.settings.generator.STYLE_WEIGHT * style_loss
 
         # update target image
         optimizer.zero_grad()
