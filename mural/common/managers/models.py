@@ -4,9 +4,10 @@ from common.models.mlp import MLP
 from common.models.cnn import CNN
 from common.models.densenet import densenet121_trans
 from common.models.vgg import vgg19_features
+from common.models.charrnn import CharRNN
 
 
-def define_model(name):
+def define_model(name, values, num_hidden, num_layers):
     if name not in settings.MODELS:
         print("model name error")
         exit(1)
@@ -23,6 +24,8 @@ def define_model(name):
         model = densenet121_trans()
     elif (name == "VGG19_FEATURES"):
         model = vgg19_features()
+    elif (name == "CHARRNN"):
+        model = CharRNN(values, num_hidden, num_layers)
 
     print("{} Model Structure:".format(name))
     print(model)
