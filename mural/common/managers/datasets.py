@@ -1,6 +1,6 @@
 import settings
-from images.data.datasets import generate_loader, load_mnist, load_fashionmnist, load_cifar10, load_catsdogs
-from texts.data.datasets import generate_data, load_dummy, load_anna
+from image_classifier.datasets import generate_loader, load_mnist, load_fashionmnist, load_cifar10, load_catsdogs
+from text_predictor.datasets import generate_data, load_dummy, load_anna
 
 def define_dataset(name):
     if name not in settings.DATASETS:

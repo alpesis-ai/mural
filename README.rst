@@ -197,14 +197,14 @@ Parameters
     # - predict_prime
     # - predict_topk
     
-    $ python mural/texts_predictor.py -h
+    $ python mural/text_predictor.py -h
      
 
 Train
 
 ::
 
-    $ python mural/texts_predictor.py
+    $ python mural/text_predictor.py
       --dataset BOOK_ANNA
       --model CHARRNN
       --loss CROSSENTROPY
@@ -222,7 +222,7 @@ Predict
 
 ::
 
-    $ python mural/texts_predictor.py
+    $ python mural/text_predictor.py
       --dataset BOOK_DUMMY
       --model CHARRNN
       --learning PREDICT
@@ -257,6 +257,10 @@ Time Series Predictor
 ------------------------------------------------------------------------------
 How it runs
 ------------------------------------------------------------------------------
+
+::
+
+    $ python mural/timeseries_predictor.py
 
 ------------------------------------------------------------------------------
 Models

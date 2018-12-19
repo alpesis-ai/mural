@@ -23,10 +23,11 @@ DATA_MNIST_DIR = DATA_DIR + "/mnist/"
 DATA_FASHIONMNIST_DIR = DATA_DIR + "/fashion_mnist/"
 DATA_CIFAR10_DIR = DATA_DIR + "/cifar10/"
 DATA_CATSDOGS_DIR = DATA_DIR + "/cats_dogs/"
-# image generate
+# image generation
 DATA_STYLE_TRANSFER_DIR = DATA_DIR + "/style_transfer/"
 # texts
 DATA_BOOKS_DIR = DATA_DIR + "/books/"
+DATA_SENTIMENT_DIR = DATA_DIR + "/sentiment_analysis/"
 
 #-------------------------------------------------------------------#
 # WEIGHTS PATHS
@@ -62,7 +63,8 @@ MODELS = [
 "DENSENET121_TRANS",
 "VGG19_FEATURES",
 "RNN",
-"CHARRNN"
+"CHARRNN",
+"SENTIMENTRNN"
 ]
 
 

@@ -4,8 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from common.models.rnn import RNN
-from timeseries.data.timeseries import timesteps_generate, timeseries_generate
-from timeseries.visualizers.data import scatter_plot
+from common.visualizers.vectors import scatter_plot
+from timeseries_predictor.datasets import timesteps_generate, timeseries_generate
 
 def train(rnn, n_steps, print_every):
     
