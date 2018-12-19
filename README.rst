@@ -6,10 +6,14 @@ Deep learning all in one using PyTorch Framework.
 
 Feature Summary:
 
-- data types:
+- applications:
     - images: image classifier, image generator
     - texts: text classifier, text generator
     - time series: timeseries predictor
+- datasets:
+    - images: mnist, fashion mnist, cifar10, catsdogs
+    - texts:
+    - time series:
 - CPU/GPU running mode (automatic detection)
 
 ==============================================================================
