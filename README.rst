@@ -7,18 +7,26 @@ Deep learning all in one using PyTorch Framework.
 Feature Summary:
 
 - applications:
-    - images: image classifier, image generator
-    - texts: text classifier, text predictor
-    - time series: timeseries predictor
+    - image classifier
+    - image generator
+    - text predictor
+    - text classifier
+    - time series predictor
 - datasets:
-    - images: mnist, fashion mnist, cifar10, catsdogs
-    - texts:
-    - time series:
+    - image classifier: mnist, fashion mnist, cifar10, catsdogs
+    - image generator:
+    - text predictor:
+    - text classifier:
+    - time series predictor:
 - CPU/GPU running mode (automatic detection)
 
 ==============================================================================
-How it runs
+Getting Started
 ==============================================================================
+
+------------------------------------------------------------------------------
+Preparation
+------------------------------------------------------------------------------
 
 Prerequisites:
 
@@ -38,6 +46,10 @@ MiniConda
     $ source activate <project_name>
     $ source deactivate
 
+------------------------------------------------------------------------------
+Datasets
+------------------------------------------------------------------------------
+
 Data Download
 
 ::
@@ -55,8 +67,33 @@ Data Download
     $ bash scripts/data/texts_books.sh
     $ bash scripts/data/texts_sentiment.sh
 
-------------------------------------------------------------------------------
+Data Notes:
+
+- images:
+    - `mnist`_
+    - `fashion_mnist`_
+    - `cifar`_
+    - `cats_and_dogs`_
+- texts:
+- time series:
+
+.. _`mnist`: http://yann.lecun.com/exdb/mnist/
+.. _`fashion_mnist`: https://github.com/zalandoresearch/fashion-mnist
+.. _`cifar`: https://www.cs.toronto.edu/~kriz/cifar.html
+.. _`cats_and_dogs`: https://www.kaggle.com/c/dogs-vs-cats
+
+
+Cats & Dogs:
+
+- download data to ``data/cats_dogs``, unzip train.zip to ``data/cats_dogs/train/1``, unzip test1.zip to ``data/cats_dogs/test/1``, to create a new folder inside train and test for adapting to ``torchvision.datasets.ImageFolder()``, otherwise, it could not be loaded.
+
+
+==============================================================================
 Image Classifier
+==============================================================================
+
+------------------------------------------------------------------------------
+How it runs
 ------------------------------------------------------------------------------
 
 Parameters
@@ -99,7 +136,15 @@ Test
       --learning INFER_MULTI
 
 ------------------------------------------------------------------------------
+Models
+------------------------------------------------------------------------------
+
+==============================================================================
 Image Generator
+==============================================================================
+
+------------------------------------------------------------------------------
+How it runs
 ------------------------------------------------------------------------------
 
 Style Transfer
@@ -114,12 +159,19 @@ Style Transfer
       --imageloop 400
 
 ------------------------------------------------------------------------------
-Text Classifier
+Models
 ------------------------------------------------------------------------------
 
+- `Image Style Transfer Using Convolutional Neural Networks`_
 
-------------------------------------------------------------------------------
+.. _`Image Style Transfer Using Convolutional Neural Networks`: https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf
+
+==============================================================================
 Text Predictor
+==============================================================================
+
+------------------------------------------------------------------------------
+How it runs
 ------------------------------------------------------------------------------
 
 Parameters
@@ -179,81 +231,34 @@ Predict
       --predict_topk 5
 
 ------------------------------------------------------------------------------
-Time Series
-------------------------------------------------------------------------------
-
-==============================================================================
 Models
-==============================================================================
-
-
-------------------------------------------------------------------------------
-Image Classifer
-------------------------------------------------------------------------------
-
-
-------------------------------------------------------------------------------
-Image Generator
-------------------------------------------------------------------------------
-
-- `Image Style Transfer Using Convolutional Neural Networks`_
-
-.. _`Image Style Transfer Using Convolutional Neural Networks`: https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf
-
-------------------------------------------------------------------------------
-Text Classifier
-------------------------------------------------------------------------------
-
-------------------------------------------------------------------------------
-Text Predictor
 ------------------------------------------------------------------------------
 
 - `CharRNN: The Unreasonable Effectiveness of Recurrent Neural Networks`_
 
 .. _`CharRNN: The Unreasonable Effectiveness of Recurrent Neural Networks`: http://karpathy.github.io/2015/05/21/rnn-effectiveness/
 
-------------------------------------------------------------------------------
-Time Series
-------------------------------------------------------------------------------
-
 ==============================================================================
-Datasets
-==============================================================================
-
-------------------------------------------------------------------------------
-Image Classifer
-------------------------------------------------------------------------------
-
-- `mnist`_
-- `fashion_mnist`_
-- `cifar`_
-- `cats_and_dogs`_
-
-.. _`mnist`: http://yann.lecun.com/exdb/mnist/
-.. _`fashion_mnist`: https://github.com/zalandoresearch/fashion-mnist
-.. _`cifar`: https://www.cs.toronto.edu/~kriz/cifar.html
-.. _`cats_and_dogs`: https://www.kaggle.com/c/dogs-vs-cats
-
-
-Cats & Dogs:
-
-- download data to ``data/cats_dogs``, unzip train.zip to ``data/cats_dogs/train/1``, unzip test1.zip to ``data/cats_dogs/test/1``, to create a new folder inside train and test for adapting to ``torchvision.datasets.ImageFolder()``, otherwise, it could not be loaded.
-
-
-------------------------------------------------------------------------------
-Image Generator
-------------------------------------------------------------------------------
-
-
-------------------------------------------------------------------------------
 Text Classifier
-------------------------------------------------------------------------------
-
-
-------------------------------------------------------------------------------
-Text Predictor
-------------------------------------------------------------------------------
+==============================================================================
 
 ------------------------------------------------------------------------------
-Time Series
+How it runs
 ------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+Models
+------------------------------------------------------------------------------
+
+==============================================================================
+Time Series Predictor
+==============================================================================
+
+------------------------------------------------------------------------------
+How it runs
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+Models
+------------------------------------------------------------------------------
+
