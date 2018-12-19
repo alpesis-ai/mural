@@ -6,14 +6,17 @@ from torch.utils.data import TensorDataset, DataLoader
 import numpy as np
 
 import settings
-from texts.data.datasets import load_text
-from texts.data.features import features_padding
+from common.data.text import text_load
 from common.models.sentimentrnn import SentimentRNN
+from common.managers.losses import define_loss
+from common.managers.optimizers import define_optimizer_classifier
+from text_classifier.features import features_padding
+from text_classifier.learn_validation import validate_steps
 
 
 if __name__ == '__main__':
-    reviews = load_text(settings.DATA_SENTIMENT_DIR + 'reviews.txt')
-    labels = load_text(settings.DATA_SENTIMENT_DIR + 'labels.txt')
+    reviews = text_load(settings.DATA_SENTIMENT_DIR + 'reviews.txt')
+    labels = text_load(settings.DATA_SENTIMENT_DIR + 'labels.txt')
     print(reviews[:1000])
     print()
     print(labels[:20])
@@ -113,7 +116,10 @@ if __name__ == '__main__':
     net = SentimentRNN(vocab_size, output_size, embedding_dim, hidden_dim, n_layers)
     print(net)
 
-    # loss and optimization functions
     lr=0.001
-    criterion = nn.BCELoss()
-    optimizer = torch.optim.Adam(net.parameters(), lr=lr)
+    criterion = define_loss("BCE")
+    optimizer = define_optimizer_classifier("ADAM", lr, net)
+    epochs = 2
+    clip=5
+    evalloop = 1
+    validate_steps(epochs, train_loader, valid_loader, net, criterion, optimizer, batch_size, clip, evalloop)

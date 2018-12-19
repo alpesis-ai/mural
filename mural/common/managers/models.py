@@ -38,6 +38,7 @@ def define_model_texts(name, values, num_hidden, num_layers):
     if (name == "CHARRNN"):
         model = CharRNN(values, num_hidden, num_layers)
 
+
     print("{} Model Structure:".format(name))
     print(model)
     return model

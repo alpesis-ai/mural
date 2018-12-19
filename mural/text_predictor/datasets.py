@@ -1,17 +1,14 @@
 import settings
+from common.data.text import text_load
 from text_predictor.text_processing import tokenize
 
 
 def load_dummy():
-    with open(settings.DATA_BOOKS_DIR + 'dummy.txt', 'r') as f:
-        text = f.read()
-    return text
+    return text_load(settings.DATA_BOOKS_DIR + 'dummy.txt')
 
 
 def load_anna():
-    with open(settings.DATA_BOOKS_DIR + 'anna.txt', 'r') as f:
-        text = f.read()
-    return text
+    return text_load(settings.DATA_BOOKS_DIR + 'anna.txt')
 
 
 def generate_data(train_data):

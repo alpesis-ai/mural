@@ -74,3 +74,10 @@ OPTIMIZERS = [
 "ADAM_TRANS",
 "SGD_TRANS"
 ]
+
+
+LOSSES = [
+"NLL",
+"CROSSENTROPY",
+"BCE"
+]
