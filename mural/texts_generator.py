@@ -70,6 +70,7 @@ def train(net, data, epochs=10, batch_size=10, seq_length=50, lr=0.001, clip=5, 
                       "Loss: {:.4f}...".format(loss.item()),
                       "Val Loss: {:.4f}".format(np.mean(val_losses)))
 
+
 if __name__ == '__main__':
     with open(settings.DATA_CHARRNN_DIR + 'dummy.txt', 'r') as f:
         text = f.read()
