@@ -3,6 +3,19 @@ from collections import Counter
 
 import numpy as np
 
+def get_batchsize(feature):
+    return feature.size(0)
+
+
+def tokenize(text, vocabulary2int):
+    text2int = []
+
+    text_copy = text.lower()
+    text_copy = ''.join([char for char in text_copy if char not in punctuation])
+    words = text_copy.split()
+    text2int.append([vocabulary2int[word] for word in words])
+    return text2int
+
 
 def text2words(text):
     text = text.lower()
@@ -26,8 +39,8 @@ def text2int_generate(text_split, vocabulary2int):
     for sentence in text_split:
         text2int.append([vocabulary2int[word] for word in sentence.split()]) 
 
-    print('Unique words: ', len((vocabulary2int)))
-    print('Tokenized text: \n', text2int[:1])
+    # print('Unique words: ', len((vocabulary2int)))
+    # print('Tokenized text: \n', text2int[:1])
     return text2int
 
 

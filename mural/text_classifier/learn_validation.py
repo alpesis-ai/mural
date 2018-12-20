@@ -4,7 +4,7 @@ from text_classifier.learn_train import train_single
 from text_classifier.learn_test import validate_with_steps
 
 
-def validate_steps(epochs, train_loader, valid_loader, model_cls, loss_fn, optimizer, batch_size, clip, evalloop):
+def validate_steps(epochs, train_loader, valid_loader, test_loader, model_cls, loss_fn, optimizer, batch_size, clip, evalloop):
     steps = 0
     model_cls.train()
     for epoch in range(epochs):
